@@ -1,23 +1,195 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useRef } from "react";
+import { GraphCanvas, darkTheme, useSelection } from "reagraph";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { processGraphInput } from "./processGraphInput";
+import { bfsTraversal } from "./bfsTraversal";
+import "./App.css"; // Import your CSS file
+import { dfsTraversal } from "./dfsTraversal";
+import { topologicalSort } from "./topologicalSort";
+import { ShortestPath } from "./ShortestPath";
 
 function App() {
+  const [nodes, setNodes] = useState([]);
+  const [edges, setEdges] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [shortestDistance, setShortestDistance] = useState("");
+  const [destinationValue, setDestinationValue] = useState("");
+  const [sourceValue, setSourceValue] = useState("");
+  const [graphType, setGraphType] = useState("directed"); // State for graph type
+  const graphRef = useRef(null);
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleSourceChange = (event) => {
+    setSourceValue(event.target.value);
+  };
+
+  const handleDestinationChange = (event) => {
+    setDestinationValue(event.target.value);
+  };
+
+  const findShortestPath = () => {
+    console.log(sourceValue);
+    console.log(destinationValue);
+    const {
+      nodes: newNodes,
+      edges: newEdges,
+      shortestDistance: shortDistance,
+    } = ShortestPath(inputValue, sourceValue, destinationValue);
+    if (newNodes.length > 0) {
+      setNodes(newNodes);
+      setEdges(newEdges);
+      setShortestDistance(shortDistance);
+    } else {
+      console.error("Invalid input format or empty graph.");
+    }
+  };
+
+  const handleSubmit = () => {
+    console.log(typeof inputValue);
+    console.log(inputValue);
+    const { nodes: newNodes, edges: newEdges } = processGraphInput(inputValue);
+    if (newNodes.length > 0) {
+      setNodes(newNodes);
+      setEdges(newEdges);
+    } else {
+      console.error("Invalid input format or empty graph.");
+    }
+  };
+
+  const { selections, onNodeClick, onCanvasClick } = useSelection({
+    ref: graphRef,
+    nodes,
+    edges,
+    type: "single",
+  });
+
+  const handleExportGraph = () => {
+    if (graphRef.current) {
+      const data = graphRef.current.exportCanvas();
+
+      const link = document.createElement("a");
+      link.setAttribute("href", data);
+      link.setAttribute("target", "_blank");
+      link.setAttribute("download", "graph.png");
+      link.click();
+    }
+  };
+
+  const handleDirectedGraph = () => {
+    setGraphType("directed");
+  };
+
+  const handleUndirectedGraph = () => {
+    setGraphType("undirected");
+  };
+
+  const handleTopologicalSort = () => {
+    //topologicalSort result
+    console.log(inputValue);
+    const { nodes: newNodes, edges: newEdges } = topologicalSort(
+      inputValue,
+      "1"
+    );
+    console.log(newNodes);
+    if (newNodes.length > 0) {
+      setNodes(newNodes);
+      setEdges(newEdges);
+    } else {
+      console.error("Invalid input format or empty graph.");
+    }
+  };
+
+  const handleBFS = () => {
+    // BFS result
+    console.log(inputValue);
+    const { nodes: newNodes, edges: newEdges } = bfsTraversal(inputValue, "1");
+    console.log(newNodes);
+    if (newNodes.length > 0) {
+      setNodes(newNodes);
+      setEdges(newEdges);
+    } else {
+      console.error("Invalid input format or empty graph.");
+    }
+  };
+
+  const handleDFS = () => {
+    // DFS result
+    console.log(inputValue);
+    const { nodes: newNodes, edges: newEdges } = dfsTraversal(inputValue, "1");
+    console.log(newNodes);
+    if (newNodes.length > 0) {
+      setNodes(newNodes);
+      setEdges(newEdges);
+    } else {
+      console.error("Invalid input format or empty graph.");
+    }
+  };
+
+  const handleTree = () => {
+    // Implement Tree functionality
+    console.log("Tree");
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      <div className="navbar">
+        <button onClick={handleDirectedGraph}>Directed Graph</button>
+        <button onClick={handleUndirectedGraph}>Undirected Graph</button>
+        <button onClick={handleTopologicalSort}>Topological Sort</button>
+        <button onClick={handleBFS}>BFS</button>
+        <button onClick={handleDFS}>DFS</button>
+        <button onClick={handleTree}>Tree</button>
+      </div>
+      <div className="container">
+        <div className="input-section">
+          <textarea
+            value={inputValue}
+            onChange={handleInputChange}
+            placeholder="Enter nodes and edges (e.g., 1->2\n2->3)"
+            className="textarea-input"
+          />
+          <button
+            onClick={handleSubmit}
+            style={{ width: "100%", marginTop: "10px" }}
+          >
+            Submit
+          </button>
+          <button onClick={handleExportGraph}>Export Graph</button>
+          <h1>SHORTEST PATH</h1>
+          <input
+            type="text"
+            placeholder="Enter Source Node"
+            onChange={handleSourceChange}
+          />
+          <input
+            type="text"
+            placeholder="Enter Destination Node"
+            onChange={handleDestinationChange}
+          />
+          <button onClick={findShortestPath}>FIND SHORTEST PATH</button>
+        </div>
+        <div className="graph-section">
+          <GraphCanvas
+            layoutType="treeLr2d"
+            labelType="all"
+            edgeLabelPosition="below"
+            edgeArrowPosition={graphType === "undirected" ? "none" : "end"} // Update edge arrow position based on graph type
+            theme={darkTheme} // for dark theme use darkTheme
+            ref={graphRef}
+            draggable
+            nodes={nodes}
+            edges={edges}
+            selections={selections}
+            onCanvasClick={onCanvasClick}
+            onNodeClick={onNodeClick}
+          />
+        </div>
+      </div>
+      <ToastContainer />
     </div>
   );
 }
