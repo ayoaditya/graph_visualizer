@@ -39,6 +39,9 @@ function App() {
       edges: newEdges,
       shortestDistance: shortDistance,
     } = ShortestPath(inputValue, sourceValue, destinationValue);
+    console.log("AFTER");
+    console.log(newNodes);
+    console.log(newEdges);
     if (newNodes.length > 0) {
       setNodes(newNodes);
       setEdges(newEdges);

@@ -1,4 +1,5 @@
 import React from "react";
+import { toast, Bounce } from "react-toastify";
 
 export function ShortestPath(inputValue, src, dest) {
   const graph = {};
@@ -90,7 +91,56 @@ export function ShortestPath(inputValue, src, dest) {
     console.log(source);
     console.log(destination);
     console.log(FINAL_ANS);
+
+    const newNodes = [];
+    const newEdges = [];
+
+    // Add nodes to nodes array
+    const uniqueNodes = new Set(Object.keys(graph));
+    Object.values(graph).forEach((neighbors) => {
+      neighbors.forEach((temp) => uniqueNodes.add(temp.node));
+    });
+
+    uniqueNodes.forEach((node) => {
+      newNodes.push({
+        id: node,
+        label: node,
+        ...(FINAL_ANS.includes(node) && { fill: "#FF0000" }),
+        //   icon: "visualizergraph_visualizersrc\ronaldopngfilenode.PNG",
+      });
+    });
+
+    // Add edges to edges array
+    Object.keys(graph).forEach((start) => {
+      graph[start].forEach((end) => {
+        newEdges.push({
+          source: start,
+          target: end.node,
+          id: `${start}-${end.node}`,
+          //   label: `${start}-${end}`,
+        });
+      });
+    });
+    console.log("NEW NODES AND EDGES");
+    console.log(newNodes);
+    console.log(newEdges);
     let shtdst = "";
-    return { nodes: [], edges: [], shortestDistance: shtdst };
+    // return { nodes: [], edges: [], shortestDistance: shtdst };
+    if (inputError) {
+      toast.error("Invalid input format!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      return { nodes: [], edges: [], shortestDistance: shtdst };
+    } else {
+      return { nodes: newNodes, edges: newEdges, shortestDistance: shtdst };
+    }
   }
 }
