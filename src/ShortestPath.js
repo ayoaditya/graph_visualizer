@@ -111,16 +111,15 @@ export function ShortestPath(inputValue, src, dest) {
     });
 
     // Add edges to edges array
-    Object.keys(graph).forEach((start) => {
-      graph[start].forEach((end) => {
-        newEdges.push({
-          source: start,
-          target: end.node,
-          id: `${start}-${end.node}`,
-          //   label: `${start}-${end}`,
-        });
+    edges.forEach(([start, end, wt]) => {
+      newEdges.push({
+        source: start,
+        target: end,
+        id: `${start}-${end}`,
+        label: `${wt}`,
       });
     });
+
     console.log("NEW NODES AND EDGES");
     console.log(newNodes);
     console.log(newEdges);
