@@ -7,6 +7,7 @@ export function ShortestPath(inputValue, src, dest, isWeighted) {
 
   const graph = {};
   let inputError = false;
+  let SHTDIST;
   const connections = inputValue;
   const edgesList = connections.trim().split("\n");
   const edges = [];
@@ -123,6 +124,7 @@ export function ShortestPath(inputValue, src, dest, isWeighted) {
       }
 
       console.log(`Shortest distance: ${distances[destination]}`);
+      SHTDIST = distances[destination];
       console.log(`Path: ${FINAL_ANS.join(" -> ")}`);
       return FINAL_ANS;
     };
@@ -161,12 +163,10 @@ export function ShortestPath(inputValue, src, dest, isWeighted) {
         label: `${wt}`,
       });
     });
-
-    let shehe = "";
     return {
       nodes: newNodes,
       edges: newEdges,
-      shortestDistance: shehe,
+      shortestDistance: SHTDIST,
     };
   }
 }

@@ -13,7 +13,7 @@ function App() {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [shortestDistance, setShortestDistance] = useState("");
+  const [shortestDistance, setShortestDistance] = useState("INF");
   const [destinationValue, setDestinationValue] = useState("");
   const [sourceValue, setSourceValue] = useState("");
   const [graphType, setGraphType] = useState("directed"); // State for graph type
@@ -222,10 +222,14 @@ function App() {
             onChange={handleDestinationChange}
           />
           <button onClick={findShortestPath}>FIND SHORTEST PATH</button>
+          <h3>
+            Shortest Distance Between {sourceValue} And {destinationValue} Is:
+            {shortestDistance}
+          </h3>
         </div>
         <div className="graph-section">
           <GraphCanvas
-            layoutType="treeLr2d"
+            // layoutType="treeLr2d"
             labelType="all"
             edgeLabelPosition="below"
             edgeArrowPosition={graphType === "undirected" ? "none" : "end"} // Update edge arrow position based on graph type
