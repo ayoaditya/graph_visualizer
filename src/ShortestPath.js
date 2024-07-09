@@ -1,7 +1,10 @@
-import React from "react";
-import { toast, Bounce } from "react-toastify";
+export function ShortestPath(inputValue, src, dest, isWeighted) {
+  let srcdestError = false;
 
-export function ShortestPath(inputValue, src, dest) {
+  if (!src || !dest) {
+    srcdestError = true;
+  }
+
   const graph = {};
   let inputError = false;
   const connections = inputValue;
@@ -10,7 +13,10 @@ export function ShortestPath(inputValue, src, dest) {
 
   // Parse the input to build the graph and edges list
   edgesList.forEach((edge) => {
-    if (edge.split("->").length === 3) {
+    if (isWeighted === false && edge.split("->").length === 3) {
+      inputError = true;
+      return { error: "Invalid Input!" };
+    } else if (edge.split("->").length === 3) {
       const [start, end, weight] = edge.split("->").map((node) => node.trim());
       const weightNum = parseFloat(weight);
       if (!start || !end || isNaN(weightNum)) {
@@ -26,14 +32,51 @@ export function ShortestPath(inputValue, src, dest) {
           graph[end] = [];
         }
       }
+    } else if (edge.split("->").length === 2) {
+      const [start, end] = edge.split("->").map((node) => node.trim());
+      if (!start || !end) {
+        inputError = true;
+      } else {
+        if (!graph[start]) {
+          graph[start] = [];
+        }
+        graph[start].push({ node: end, weight: 1 });
+        edges.push([start, end, 1]);
+        // Initialize end node in case it has no outgoing edges
+        if (!graph[end]) {
+          graph[end] = [];
+        }
+      }
     } else {
       inputError = true;
     }
   });
-  console.log(graph);
+
+  if (!srcdestError) {
+    let ch1 = false;
+    let ch2 = false;
+
+    edges.forEach(([start, end, wt]) => {
+      if (start === src) {
+        ch1 = true;
+      }
+      if (end === dest) {
+        ch2 = true;
+      }
+    });
+
+    if (ch1 === false || ch2 === false) {
+      srcdestError = true;
+    }
+  }
+
+  if (srcdestError) {
+    return { error: "Invalid Source or Destination!" };
+  }
 
   if (inputError) {
     console.error("Input error: please check your input format.");
+    return { error: "Invalid Input!" };
   } else {
     const bellmanFord = (graph, edges, source, destination) => {
       const distances = {};
@@ -84,13 +127,13 @@ export function ShortestPath(inputValue, src, dest) {
       return FINAL_ANS;
     };
 
-    // Example usage:
     const source = src;
     const destination = dest;
     const FINAL_ANS = bellmanFord(graph, edges, source, destination);
-    console.log(source);
-    console.log(destination);
-    console.log(FINAL_ANS);
+
+    if (!FINAL_ANS) {
+      return { error: "No path found from source to destination" };
+    }
 
     const newNodes = [];
     const newEdges = [];
@@ -106,7 +149,6 @@ export function ShortestPath(inputValue, src, dest) {
         id: node,
         label: node,
         ...(FINAL_ANS.includes(node) && { fill: "#FF0000" }),
-        //   icon: "visualizergraph_visualizersrc\ronaldopngfilenode.PNG",
       });
     });
 
@@ -120,26 +162,11 @@ export function ShortestPath(inputValue, src, dest) {
       });
     });
 
-    console.log("NEW NODES AND EDGES");
-    console.log(newNodes);
-    console.log(newEdges);
-    let shtdst = "";
-    // return { nodes: [], edges: [], shortestDistance: shtdst };
-    if (inputError) {
-      toast.error("Invalid input format!", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      });
-      return { nodes: [], edges: [], shortestDistance: shtdst };
-    } else {
-      return { nodes: newNodes, edges: newEdges, shortestDistance: shtdst };
-    }
+    let shehe = "";
+    return {
+      nodes: newNodes,
+      edges: newEdges,
+      shortestDistance: shehe,
+    };
   }
 }

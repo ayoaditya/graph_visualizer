@@ -8,7 +8,7 @@ import "./App.css"; // Import your CSS file
 import { dfsTraversal } from "./dfsTraversal";
 import { topologicalSort } from "./topologicalSort";
 import { ShortestPath } from "./ShortestPath";
-
+import { toast, Bounce } from "react-toastify";
 function App() {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
@@ -20,7 +20,7 @@ function App() {
   const graphRef = useRef(null);
 
   const [isWeightedChecked, setIsWeightedChecked] = useState(false);
-  const [isUnweightedChecked, setIsUnweightedChecked] = useState(false);
+  const [isUnweightedChecked, setIsUnweightedChecked] = useState(true);
 
   // Handlers to update the state
   const handleWeightedChange = (event) => {
@@ -52,20 +52,34 @@ function App() {
   const findShortestPath = () => {
     console.log(sourceValue);
     console.log(destinationValue);
-    const {
-      nodes: newNodes,
-      edges: newEdges,
-      shortestDistance: shortDistance,
-    } = ShortestPath(inputValue, sourceValue, destinationValue);
+
+    const result = ShortestPath(
+      inputValue,
+      sourceValue,
+      destinationValue,
+      isWeightedChecked
+    );
     console.log("AFTER");
-    console.log(newNodes);
-    console.log(newEdges);
-    if (newNodes.length > 0) {
-      setNodes(newNodes);
-      setEdges(newEdges);
-      setShortestDistance(shortDistance);
-    } else {
+    console.log(result.nodes);
+    console.log(result.edges);
+    console.log(result.shortestDistance);
+    if (result.error) {
       console.error("Invalid input format or empty graph.");
+      toast.error(result.error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    } else {
+      setNodes(result.nodes);
+      setEdges(result.edges);
+      setShortestDistance(result.shortestDistance);
     }
   };
 
