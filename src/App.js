@@ -19,6 +19,24 @@ function App() {
   const [graphType, setGraphType] = useState("directed"); // State for graph type
   const graphRef = useRef(null);
 
+  const [isWeightedChecked, setIsWeightedChecked] = useState(false);
+  const [isUnweightedChecked, setIsUnweightedChecked] = useState(false);
+
+  // Handlers to update the state
+  const handleWeightedChange = (event) => {
+    setIsWeightedChecked(event.target.checked);
+    if (event.target.checked) {
+      setIsUnweightedChecked(false);
+    }
+  };
+
+  const handleUnweightedChange = (event) => {
+    setIsUnweightedChecked(event.target.checked);
+    if (event.target.checked) {
+      setIsWeightedChecked(false);
+    }
+  };
+
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -149,6 +167,22 @@ function App() {
       </div>
       <div className="container">
         <div className="input-section">
+          <label>
+            <input
+              type="checkbox"
+              checked={isWeightedChecked}
+              onChange={handleWeightedChange}
+            />
+            Weighted
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={isUnweightedChecked}
+              onChange={handleUnweightedChange}
+            />
+            Unweighted
+          </label>
           <textarea
             value={inputValue}
             onChange={handleInputChange}
