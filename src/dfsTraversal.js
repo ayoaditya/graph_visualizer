@@ -77,6 +77,14 @@ export function dfsTraversal(connections) {
         target,
         id: `${source}-${target}`,
       });
+    } else if (source === "SePaRaTiOn" && target !== "SePaRaTiOn") {
+      const previousNode = dfsOrder[index - 2];
+      newEdges.push({
+        source: previousNode,
+        target: target,
+        id: `${previousNode}-${target}`,
+        size: 0,
+      });
     }
   }
 

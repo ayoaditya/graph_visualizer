@@ -230,7 +230,7 @@ function App() {
         </div>
         <div className="graph-section">
           <GraphCanvas
-            layoutType="treeLr2d"
+            layoutType="hierarchicalLr"
             labelType="all"
             edgeLabelPosition="below"
             edgeArrowPosition={graphType === "undirected" ? "none" : "end"} // Update edge arrow position based on graph type

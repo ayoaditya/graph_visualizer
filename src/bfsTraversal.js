@@ -73,6 +73,7 @@ export function bfsTraversal(connections) {
   });
 
   const newEdges = [];
+
   for (let index = 1; index < bfsOrder.length; index++) {
     const source = bfsOrder[index - 1];
     const target = bfsOrder[index];
@@ -83,8 +84,19 @@ export function bfsTraversal(connections) {
         target,
         id: `${source}-${target}`,
       });
+    } else if (source === "SePaRaTiOn" && target !== "SePaRaTiOn") {
+      const previousNode = bfsOrder[index - 2];
+      newEdges.push({
+        source: previousNode,
+        target: target,
+        id: `${previousNode}-${target}`,
+        size: 0,
+      });
     }
   }
+
+  console.log(newEdges);
+
   // const newEdges = [
   //   {
   //     fill: "#FF0000",
