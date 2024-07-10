@@ -1,9 +1,8 @@
 import { toast, Bounce } from "react-toastify";
-import { Arrow, nodeSizeProvider } from "reagraph";
 
 export function bfsTraversal(connections, startNode) {
   let inputError = false;
-  const st = connections[0];
+  const st = startNode;
   console.log(st);
   const graph = {};
   const edges = connections.trim().split("\n");
@@ -29,7 +28,7 @@ export function bfsTraversal(connections, startNode) {
   console.log(graph);
   // Perform BFS traversal
   const visited = new Set();
-  const queue = [st];
+  const queue = [startNode];
   const bfsOrder = [];
 
   while (queue.length > 0) {
@@ -53,35 +52,34 @@ export function bfsTraversal(connections, startNode) {
     opacity: 5,
     id: node,
     label: node,
-    fill: "#FF0000",
+    // fill: "#FF0000",
   }));
 
-  //   const newEdges = bfsOrder.slice(1).map((node, index) => ({
-  //     fill: "#D8E6EA",
-  //     source: bfsOrder[index],
-  //     target: node,
-  //     id: `${bfsOrder[index]}-${node}`,
-  //     size: 3,
-  //   }));
-  const newEdges = [
-    {
-      fill: "#FF0000",
-      source: "1",
-      target: "2",
-      id: "1-2",
-      //   label: "1-2",
-      //   size: 0,
-      Arrow: 0,
-      //   size: 0,
-    },
-    {
-      source: "2",
-      target: "3",
-      id: "2-3",
-      label: "2-3",
-      size: 5,
-    },
-  ];
+  const newEdges = bfsOrder.slice(1).map((node, index) => ({
+    source: bfsOrder[index],
+    target: node,
+    id: `${bfsOrder[index]}-${node}`,
+    // size: 2,
+  }));
+  // const newEdges = [
+  //   {
+  //     fill: "#FF0000",
+  //     source: "1",
+  //     target: "2",
+  //     id: "1-2",
+  //     //   label: "1-2",
+  //     //   size: 0,
+  //     Arrow: 0,
+  //     //   size: 0,
+  //   },
+  //   {
+  //     source: "2",
+  //     target: "3",
+  //     id: "2-3",
+  //     label: "2-3",
+  //     size: 5,
+  //   },
+  // ];
 
   if (inputError) {
     toast.error("Invalid input format!", {

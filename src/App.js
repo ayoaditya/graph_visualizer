@@ -13,15 +13,16 @@ function App() {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [shortestDistance, setShortestDistance] = useState("INF");
+  const [shortestDistance, setShortestDistance] = useState("∞");
   const [destinationValue, setDestinationValue] = useState("");
-  const [sourceValue, setSourceValue] = useState("");
+  const [sourceValue, setSourceValue] = useState(inputValue[0]);
+  const [StartNode, setStartNode] = useState("");
   const [graphType, setGraphType] = useState("directed"); // State for graph type
+
   const graphRef = useRef(null);
 
   const [isWeightedChecked, setIsWeightedChecked] = useState(false);
   const [isUnweightedChecked, setIsUnweightedChecked] = useState(true);
-
   // Handlers to update the state
   const handleWeightedChange = (event) => {
     setIsWeightedChecked(event.target.checked);
@@ -37,6 +38,9 @@ function App() {
     }
   };
 
+  const handleStartNodeChange = (event) => {
+    setStartNode(event.target.value);
+  };
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -141,7 +145,10 @@ function App() {
   const handleBFS = () => {
     // BFS result
     console.log(inputValue);
-    const { nodes: newNodes, edges: newEdges } = bfsTraversal(inputValue, "1");
+    const { nodes: newNodes, edges: newEdges } = bfsTraversal(
+      inputValue,
+      StartNode
+    );
     console.log(newNodes);
     if (newNodes.length > 0) {
       setNodes(newNodes);
@@ -197,6 +204,12 @@ function App() {
             />
             Unweighted
           </label>
+          <br></br>
+          <input
+            type="text"
+            placeholder="Starting Node"
+            onChange={handleStartNodeChange}
+          />
           <textarea
             value={inputValue}
             onChange={handleInputChange}

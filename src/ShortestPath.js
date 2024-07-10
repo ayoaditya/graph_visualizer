@@ -53,7 +53,7 @@ export function ShortestPath(inputValue, src, dest, isWeighted) {
     }
   });
 
-  if (!srcdestError) {
+  if (!srcdestError && src !== dest) {
     let ch1 = false;
     let ch2 = false;
 
@@ -136,6 +136,11 @@ export function ShortestPath(inputValue, src, dest, isWeighted) {
     if (!FINAL_ANS) {
       return { error: "No path found from source to destination" };
     }
+    const ConnectionShortestPath = [];
+    for (let i = 0; i < FINAL_ANS.length - 1; i++) {
+      ConnectionShortestPath[FINAL_ANS[i]] = FINAL_ANS[i + 1];
+    }
+    console.log(ConnectionShortestPath);
 
     const newNodes = [];
     const newEdges = [];
@@ -161,6 +166,7 @@ export function ShortestPath(inputValue, src, dest, isWeighted) {
         target: end,
         id: `${start}-${end}`,
         label: `${wt}`,
+        size: ConnectionShortestPath[start] === end ? 3 : 1,
       });
     });
     return {
