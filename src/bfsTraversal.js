@@ -28,39 +28,63 @@ export function bfsTraversal(connections) {
   console.log(graph);
   // Perform BFS traversal
   const visited = new Set();
-  const queue = [st];
   const bfsOrder = [];
 
-  while (queue.length > 0) {
-    const node = queue.shift();
-    if (!visited.has(node)) {
-      visited.add(node);
-      bfsOrder.push(node);
-      // Check if node has neighbors
-      if (graph[node]) {
-        graph[node].forEach((neighbor) => {
-          if (!visited.has(neighbor)) {
-            queue.push(neighbor);
-          }
-        });
+  // Assume DistinctNodes is a Set containing all distinct nodes
+  const DistinctNodes = new Set(Object.keys(graph)); // Initialize with all keys in the graph
+
+  const bfs = (startNode) => {
+    const queue = [startNode];
+    while (queue.length > 0) {
+      const node = queue.shift();
+      if (!visited.has(node)) {
+        visited.add(node);
+        bfsOrder.push(node);
+        // Check if node has neighbors
+        if (graph[node]) {
+          graph[node].forEach((neighbor) => {
+            if (!visited.has(neighbor)) {
+              queue.push(neighbor);
+            }
+          });
+        }
       }
     }
-  }
+  };
+
+  // Iterate over all distinct nodes and perform BFS for unvisited nodes
+  DistinctNodes.forEach((node) => {
+    if (!visited.has(node)) {
+      if (bfsOrder.length > 0) {
+        bfsOrder.push("SePaRaTiOn"); // Separate different connected components
+      }
+      bfs(node);
+    }
+  });
+
   console.log(bfsOrder);
 
-  const newNodes = bfsOrder.map((node) => ({
-    opacity: 5,
-    id: node,
-    label: node,
-    // fill: "#FF0000",
-  }));
+  const newNodes = [];
+  DistinctNodes.forEach((node) => {
+    newNodes.push({
+      id: node,
+      label: node,
+    });
+  });
 
-  const newEdges = bfsOrder.slice(1).map((node, index) => ({
-    source: bfsOrder[index],
-    target: node,
-    id: `${bfsOrder[index]}-${node}`,
-    // size: 2,
-  }));
+  const newEdges = [];
+  for (let index = 1; index < bfsOrder.length; index++) {
+    const source = bfsOrder[index - 1];
+    const target = bfsOrder[index];
+
+    if (source !== "SePaRaTiOn" && target !== "SePaRaTiOn") {
+      newEdges.push({
+        source,
+        target,
+        id: `${source}-${target}`,
+      });
+    }
+  }
   // const newEdges = [
   //   {
   //     fill: "#FF0000",

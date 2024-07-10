@@ -154,7 +154,7 @@ function App() {
   const handleDFS = () => {
     // DFS result
     console.log(inputValue);
-    const { nodes: newNodes, edges: newEdges } = dfsTraversal(inputValue, "1");
+    const { nodes: newNodes, edges: newEdges } = dfsTraversal(inputValue);
     console.log(newNodes);
     if (newNodes.length > 0) {
       setNodes(newNodes);
@@ -230,7 +230,7 @@ function App() {
         </div>
         <div className="graph-section">
           <GraphCanvas
-            // layoutType="treeLr2d"
+            layoutType="treeLr2d"
             labelType="all"
             edgeLabelPosition="below"
             edgeArrowPosition={graphType === "undirected" ? "none" : "end"} // Update edge arrow position based on graph type

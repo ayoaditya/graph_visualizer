@@ -1,5 +1,5 @@
 import { toast, Bounce } from "react-toastify";
-export function dfsTraversal(connections, startNode) {
+export function dfsTraversal(connections) {
   console.log("connections");
   console.log(connections);
   let inputError = false;
@@ -29,9 +29,11 @@ export function dfsTraversal(connections, startNode) {
 
   console.log(graph);
 
-  // Perform DFS traversal
   const visited_dfs = new Set();
   const dfsOrder = [];
+
+  // Assume DistinctNodes is a Set containing all distinct nodes
+  const DistinctNodes = new Set(Object.keys(graph)); // Initialize with all keys in the graph
 
   function dfs(node) {
     if (visited_dfs.has(node)) return;
@@ -44,20 +46,39 @@ export function dfsTraversal(connections, startNode) {
     }
   }
 
-  // Start DFS from a specified node (startNode)
-  dfs(st);
+  // Iterate over all distinct nodes and perform DFS for unvisited nodes
+  DistinctNodes.forEach((node) => {
+    if (!visited_dfs.has(node)) {
+      if (dfsOrder.length > 0) {
+        dfsOrder.push("SePaRaTiOn"); // Separate different connected components
+      }
+      dfs(node);
+    }
+  });
+
   console.log(dfsOrder);
 
-  const newNodes = dfsOrder.map((node) => ({
-    id: node,
-    label: node,
-  }));
+  const newNodes = [];
+  DistinctNodes.forEach((node) => {
+    newNodes.push({
+      id: node,
+      label: node,
+    });
+  });
 
-  const newEdges = dfsOrder.slice(1).map((node, index) => ({
-    source: dfsOrder[index],
-    target: node,
-    id: `${dfsOrder[index]}-${node}`,
-  }));
+  const newEdges = [];
+  for (let index = 1; index < dfsOrder.length; index++) {
+    const source = dfsOrder[index - 1];
+    const target = dfsOrder[index];
+
+    if (source !== "SePaRaTiOn" && target !== "SePaRaTiOn") {
+      newEdges.push({
+        source,
+        target,
+        id: `${source}-${target}`,
+      });
+    }
+  }
 
   if (inputError) {
     toast.error("Invalid input format!", {
