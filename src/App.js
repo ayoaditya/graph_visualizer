@@ -15,8 +15,7 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   const [shortestDistance, setShortestDistance] = useState("∞");
   const [destinationValue, setDestinationValue] = useState("");
-  const [sourceValue, setSourceValue] = useState(inputValue[0]);
-  const [StartNode, setStartNode] = useState("");
+  const [sourceValue, setSourceValue] = useState("");
   const [graphType, setGraphType] = useState("directed"); // State for graph type
 
   const graphRef = useRef(null);
@@ -38,9 +37,6 @@ function App() {
     }
   };
 
-  const handleStartNodeChange = (event) => {
-    setStartNode(event.target.value);
-  };
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -145,10 +141,7 @@ function App() {
   const handleBFS = () => {
     // BFS result
     console.log(inputValue);
-    const { nodes: newNodes, edges: newEdges } = bfsTraversal(
-      inputValue,
-      StartNode
-    );
+    const { nodes: newNodes, edges: newEdges } = bfsTraversal(inputValue);
     console.log(newNodes);
     if (newNodes.length > 0) {
       setNodes(newNodes);
@@ -204,12 +197,7 @@ function App() {
             />
             Unweighted
           </label>
-          <br></br>
-          <input
-            type="text"
-            placeholder="Starting Node"
-            onChange={handleStartNodeChange}
-          />
+
           <textarea
             value={inputValue}
             onChange={handleInputChange}

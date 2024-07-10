@@ -1,8 +1,8 @@
 import { toast, Bounce } from "react-toastify";
 
-export function bfsTraversal(connections, startNode) {
+export function bfsTraversal(connections) {
   let inputError = false;
-  const st = startNode;
+  const st = connections[0];
   console.log(st);
   const graph = {};
   const edges = connections.trim().split("\n");
@@ -28,7 +28,7 @@ export function bfsTraversal(connections, startNode) {
   console.log(graph);
   // Perform BFS traversal
   const visited = new Set();
-  const queue = [startNode];
+  const queue = [st];
   const bfsOrder = [];
 
   while (queue.length > 0) {
