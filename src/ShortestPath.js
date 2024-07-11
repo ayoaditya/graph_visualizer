@@ -58,10 +58,10 @@ export function ShortestPath(inputValue, src, dest, isWeighted) {
     let ch2 = false;
 
     edges.forEach(([start, end, wt]) => {
-      if (start === src) {
+      if (start === src || end === src) {
         ch1 = true;
       }
-      if (end === dest) {
+      if (end === dest || start === dest) {
         ch2 = true;
       }
     });
