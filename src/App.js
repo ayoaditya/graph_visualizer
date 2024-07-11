@@ -140,7 +140,7 @@ function App() {
     console.log(inputValue);
     const { nodes: newNodes, edges: newEdges } = topologicalSort(
       inputValue,
-      "1"
+      isWeightedChecked
     );
     console.log(newNodes);
     if (newNodes.length > 0) {
@@ -155,7 +155,10 @@ function App() {
   const handleBFS = () => {
     // BFS result
     console.log(inputValue);
-    const { nodes: newNodes, edges: newEdges } = bfsTraversal(inputValue);
+    const { nodes: newNodes, edges: newEdges } = bfsTraversal(
+      inputValue,
+      isWeightedChecked
+    );
     console.log(newNodes);
     if (newNodes.length > 0) {
       setNodes(newNodes);
@@ -169,7 +172,10 @@ function App() {
   const handleDFS = () => {
     // DFS result
     console.log(inputValue);
-    const { nodes: newNodes, edges: newEdges } = dfsTraversal(inputValue);
+    const { nodes: newNodes, edges: newEdges } = dfsTraversal(
+      inputValue,
+      isWeightedChecked
+    );
     console.log(newNodes);
     if (newNodes.length > 0) {
       setNodes(newNodes);

@@ -66,22 +66,6 @@ export const processGraphInput = (inputValue, isWeighted) => {
     });
     return { nodes: [], edges: [] };
   } else {
-    // Add nodes to nodes array
-    // const uniqueNodes = new Set(Object.keys(graph));
-    // Object.values(graph).forEach((neighbors) => {
-    //   neighbors.forEach((node) => uniqueNodes.add(node));
-    // });
-
-    // uniqueNodes.forEach((node) => {
-    //   newNodes.push({
-    //     id: node,
-    //     label: node,
-    //     //   icon: "visualizergraph_visualizersrc\ronaldopngfilenode.PNG",
-    //   });
-    // });
-
-    // Add edges to edges array
-
     edges.forEach(([start, end, wt]) => {
       newNodes.push({
         id: start,
