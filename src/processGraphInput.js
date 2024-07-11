@@ -70,10 +70,12 @@ export const processGraphInput = (inputValue, isWeighted) => {
       newNodes.push({
         id: start,
         label: start,
+        fill: "#cfd1cd",
       });
       newNodes.push({
         id: end,
         label: end,
+        fill: "#cfd1cd",
       });
       newEdges.push({
         source: start,

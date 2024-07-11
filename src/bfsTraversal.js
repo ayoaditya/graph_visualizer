@@ -98,6 +98,7 @@ export function bfsTraversal(connections, isWeighted) {
       newNodes.push({
         id: node,
         label: node,
+        fill: "#cfd1cd",
       });
     });
 
