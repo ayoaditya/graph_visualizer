@@ -58,7 +58,7 @@ export function dfsTraversal(connections, isWeighted) {
     const visited_dfs = new Set();
     const dfsOrder = [];
 
-    // Assume DistinctNodes is a Set containing all distinct nodes
+    // set of DistinctNodes
     const DistinctNodes = new Set(Object.keys(graph)); // Initialize with all keys in the graph
 
     function dfs(node) {
