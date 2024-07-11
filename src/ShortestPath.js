@@ -156,7 +156,7 @@ export function ShortestPath(inputValue, src, dest, isWeighted) {
 
     uniqueNodes.forEach((node) => {
       let label = node;
-
+      let color = "#cfd1cd";
       if (
         FINAL_ANS.length === 1 ||
         (firstNode === lastNode && node === firstNode)
@@ -171,11 +171,13 @@ export function ShortestPath(inputValue, src, dest, isWeighted) {
           label = `DESTINATION: ${node}`;
         }
       }
-
+      if (FINAL_ANS.includes(node)) {
+        color = "#ff5b03";
+      }
       newNodes.push({
         id: node,
         label: label,
-        ...(FINAL_ANS.includes(node) && { fill: "#FF0000" }),
+        fill: color,
       });
     });
 

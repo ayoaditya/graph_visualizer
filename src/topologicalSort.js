@@ -91,6 +91,7 @@ export function topologicalSort(connections, isWeighted) {
     const newNodes = topologicalOrder.map((node) => ({
       id: node,
       label: node,
+      fill: "#cfd1cd",
     }));
 
     const newEdges = topologicalOrder.slice(1).map((node, index) => ({
