@@ -16,24 +16,32 @@ function App() {
   const [shortestDistance, setShortestDistance] = useState("∞");
   const [destinationValue, setDestinationValue] = useState("");
   const [sourceValue, setSourceValue] = useState("");
+  const [layoutTypeGraph, setlayoutTypeGraph] = useState("forceDirected2d");
   const [graphType, setGraphType] = useState("directed"); // State for graph type
 
   const graphRef = useRef(null);
 
   const [isWeightedChecked, setIsWeightedChecked] = useState(false);
   const [isUnweightedChecked, setIsUnweightedChecked] = useState(true);
+
   // Handlers to update the state
   const handleWeightedChange = (event) => {
-    setIsWeightedChecked(event.target.checked);
-    if (event.target.checked) {
+    const checked = event.target.checked;
+    setIsWeightedChecked(checked);
+    if (checked) {
       setIsUnweightedChecked(false);
+    } else {
+      setIsUnweightedChecked(true);
     }
   };
 
   const handleUnweightedChange = (event) => {
-    setIsUnweightedChecked(event.target.checked);
-    if (event.target.checked) {
+    const checked = event.target.checked;
+    setIsUnweightedChecked(checked);
+    if (checked) {
       setIsWeightedChecked(false);
+    } else {
+      setIsWeightedChecked(true);
     }
   };
 
@@ -80,6 +88,7 @@ function App() {
       setNodes(result.nodes);
       setEdges(result.edges);
       setShortestDistance(result.shortestDistance);
+      setlayoutTypeGraph("forceDirected2d");
     }
   };
 
@@ -90,6 +99,7 @@ function App() {
     if (newNodes.length > 0) {
       setNodes(newNodes);
       setEdges(newEdges);
+      setlayoutTypeGraph("forceDirected2d");
     } else {
       console.error("Invalid input format or empty graph.");
     }
@@ -133,6 +143,7 @@ function App() {
     if (newNodes.length > 0) {
       setNodes(newNodes);
       setEdges(newEdges);
+      setlayoutTypeGraph("hierarchicalLr");
     } else {
       console.error("Invalid input format or empty graph.");
     }
@@ -146,6 +157,7 @@ function App() {
     if (newNodes.length > 0) {
       setNodes(newNodes);
       setEdges(newEdges);
+      setlayoutTypeGraph("hierarchicalLr");
     } else {
       console.error("Invalid input format or empty graph.");
     }
@@ -159,6 +171,7 @@ function App() {
     if (newNodes.length > 0) {
       setNodes(newNodes);
       setEdges(newEdges);
+      setlayoutTypeGraph("hierarchicalLr");
     } else {
       console.error("Invalid input format or empty graph.");
     }
@@ -166,7 +179,27 @@ function App() {
 
   const handleTree = () => {
     // Implement Tree functionality
+    const { nodes: newNodes, edges: newEdges } = processGraphInput(inputValue);
+    if (newNodes.length > 0) {
+      setNodes(newNodes);
+      setEdges(newEdges);
+      setlayoutTypeGraph("treeTd2d");
+    } else {
+      console.error("Invalid input format or empty graph.");
+    }
     console.log("Tree");
+  };
+  const handleRandom = () => {
+    // Implement Tree functionality
+    const { nodes: newNodes, edges: newEdges } = processGraphInput(inputValue);
+    if (newNodes.length > 0) {
+      setNodes(newNodes);
+      setEdges(newEdges);
+      setlayoutTypeGraph("forceatlas2");
+    } else {
+      console.error("Invalid input format or empty graph.");
+    }
+    console.log("Random");
   };
 
   return (
@@ -175,9 +208,12 @@ function App() {
         <button onClick={handleDirectedGraph}>Directed Graph</button>
         <button onClick={handleUndirectedGraph}>Undirected Graph</button>
         <button onClick={handleTopologicalSort}>Topological Sort</button>
+        <h2>LAYOUT:</h2>
+        <button onClick={handleTree}>Tree</button>
+        <button onClick={handleRandom}>Random</button>
+        <h2>TRAVERSAL:</h2>
         <button onClick={handleBFS}>BFS</button>
         <button onClick={handleDFS}>DFS</button>
-        <button onClick={handleTree}>Tree</button>
       </div>
       <div className="container">
         <div className="input-section">
@@ -230,7 +266,7 @@ function App() {
         </div>
         <div className="graph-section">
           <GraphCanvas
-            layoutType="hierarchicalLr"
+            layoutType={layoutTypeGraph}
             labelType="all"
             edgeLabelPosition="below"
             edgeArrowPosition={graphType === "undirected" ? "none" : "end"} // Update edge arrow position based on graph type
