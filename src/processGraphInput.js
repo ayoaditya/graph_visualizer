@@ -1,14 +1,34 @@
 import { toast, Bounce } from "react-toastify";
-import { Icon } from "reagraph";
+// import { Icon } from "reagraph";
 
-export const processGraphInput = (inputValue) => {
+export const processGraphInput = (inputValue, isWeighted) => {
   const graph = {};
+  const edges = [];
   let inputError = false;
   const connections = inputValue;
 
   const edgesList = connections.trim().split("\n");
   edgesList.forEach((edge) => {
-    if (edge.split("->").length === 2) {
+    if (isWeighted === false && edge.split("->").length === 3) {
+      inputError = true;
+      return { error: "Invalid Input!" };
+    } else if (edge.split("->").length === 3) {
+      const [start, end, weight] = edge.split("->").map((node) => node.trim());
+      const weightNum = parseFloat(weight);
+      if (!start || !end || isNaN(weightNum)) {
+        inputError = true;
+      } else {
+        if (!graph[start]) {
+          graph[start] = [];
+        }
+        graph[start].push({ node: end, weight: weightNum });
+        edges.push([start, end, weightNum]);
+        // Initialize end node in case it has no outgoing edges
+        if (!graph[end]) {
+          graph[end] = [];
+        }
+      }
+    } else if (edge.split("->").length === 2) {
       const [start, end] = edge.split("->").map((node) => node.trim());
       if (!start || !end) {
         inputError = true;
@@ -16,7 +36,8 @@ export const processGraphInput = (inputValue) => {
         if (!graph[start]) {
           graph[start] = [];
         }
-        graph[start].push(end);
+        graph[start].push({ node: end, weight: 1 });
+        edges.push([start, end, 1]);
         // Initialize end node in case it has no outgoing edges
         if (!graph[end]) {
           graph[end] = [];
@@ -31,33 +52,6 @@ export const processGraphInput = (inputValue) => {
 
   const newNodes = [];
   const newEdges = [];
-
-  // Add nodes to nodes array
-  const uniqueNodes = new Set(Object.keys(graph));
-  Object.values(graph).forEach((neighbors) => {
-    neighbors.forEach((node) => uniqueNodes.add(node));
-  });
-
-  uniqueNodes.forEach((node) => {
-    newNodes.push({
-      id: node,
-      label: node,
-      //   icon: "visualizergraph_visualizersrc\ronaldopngfilenode.PNG",
-    });
-  });
-
-  // Add edges to edges array
-  Object.keys(graph).forEach((start) => {
-    graph[start].forEach((end) => {
-      newEdges.push({
-        source: start,
-        target: end,
-        id: `${start}-${end}`,
-        //   label: `${start}-${end}`,
-      });
-    });
-  });
-
   if (inputError) {
     toast.error("Invalid input format!", {
       position: "top-center",
@@ -72,6 +66,39 @@ export const processGraphInput = (inputValue) => {
     });
     return { nodes: [], edges: [] };
   } else {
+    // Add nodes to nodes array
+    // const uniqueNodes = new Set(Object.keys(graph));
+    // Object.values(graph).forEach((neighbors) => {
+    //   neighbors.forEach((node) => uniqueNodes.add(node));
+    // });
+
+    // uniqueNodes.forEach((node) => {
+    //   newNodes.push({
+    //     id: node,
+    //     label: node,
+    //     //   icon: "visualizergraph_visualizersrc\ronaldopngfilenode.PNG",
+    //   });
+    // });
+
+    // Add edges to edges array
+
+    edges.forEach(([start, end, wt]) => {
+      newNodes.push({
+        id: start,
+        label: start,
+      });
+      newNodes.push({
+        id: end,
+        label: end,
+      });
+      newEdges.push({
+        source: start,
+        target: end,
+        id: `${start}-${end}`,
+        label: isWeighted ? `${wt}` : "",
+      });
+    });
+
     return { nodes: newNodes, edges: newEdges };
   }
 };

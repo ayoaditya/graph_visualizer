@@ -95,7 +95,10 @@ function App() {
   const handleSubmit = () => {
     console.log(typeof inputValue);
     console.log(inputValue);
-    const { nodes: newNodes, edges: newEdges } = processGraphInput(inputValue);
+    const { nodes: newNodes, edges: newEdges } = processGraphInput(
+      inputValue,
+      isWeightedChecked
+    );
     if (newNodes.length > 0) {
       setNodes(newNodes);
       setEdges(newEdges);
@@ -179,7 +182,10 @@ function App() {
 
   const handleTree = () => {
     // Implement Tree functionality
-    const { nodes: newNodes, edges: newEdges } = processGraphInput(inputValue);
+    const { nodes: newNodes, edges: newEdges } = processGraphInput(
+      inputValue,
+      isWeightedChecked
+    );
     if (newNodes.length > 0) {
       setNodes(newNodes);
       setEdges(newEdges);
@@ -191,7 +197,10 @@ function App() {
   };
   const handleRandom = () => {
     // Implement Tree functionality
-    const { nodes: newNodes, edges: newEdges } = processGraphInput(inputValue);
+    const { nodes: newNodes, edges: newEdges } = processGraphInput(
+      inputValue,
+      isWeightedChecked
+    );
     if (newNodes.length > 0) {
       setNodes(newNodes);
       setEdges(newEdges);
