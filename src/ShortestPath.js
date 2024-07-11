@@ -151,10 +151,30 @@ export function ShortestPath(inputValue, src, dest, isWeighted) {
       neighbors.forEach((temp) => uniqueNodes.add(temp.node));
     });
 
+    const firstNode = FINAL_ANS[0];
+    const lastNode = FINAL_ANS[FINAL_ANS.length - 1];
+
     uniqueNodes.forEach((node) => {
+      let label = node;
+
+      if (
+        FINAL_ANS.length === 1 ||
+        (firstNode === lastNode && node === firstNode)
+      ) {
+        // Normal label for single element or same start and end node
+        label = node;
+      } else {
+        if (node === firstNode) {
+          label = `SOURCE: ${node}`;
+        }
+        if (node === lastNode) {
+          label = `DESTINATION: ${node}`;
+        }
+      }
+
       newNodes.push({
         id: node,
-        label: node,
+        label: label,
         ...(FINAL_ANS.includes(node) && { fill: "#FF0000" }),
       });
     });
