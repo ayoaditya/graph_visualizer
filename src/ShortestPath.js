@@ -156,7 +156,7 @@ export function ShortestPath(inputValue, src, dest, isWeighted) {
 
     uniqueNodes.forEach((node) => {
       let label = node;
-      let color = "#cfd1cd";
+      let color = "#a6a5a2";
       if (
         FINAL_ANS.length === 1 ||
         (firstNode === lastNode && node === firstNode)

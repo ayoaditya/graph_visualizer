@@ -89,7 +89,7 @@ export function dfsTraversal(connections, isWeighted) {
       newNodes.push({
         id: node,
         label: node,
-        fill: "#cfd1cd",
+        fill: "#a6a5a2",
       });
     });
 
