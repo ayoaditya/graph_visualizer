@@ -17,7 +17,6 @@ function App() {
   const [destinationValue, setDestinationValue] = useState("");
   const [sourceValue, setSourceValue] = useState("");
   const [layoutTypeGraph, setlayoutTypeGraph] = useState("forceDirected2d");
-  const [graphType, setGraphType] = useState("directed"); // State for graph type
 
   const graphRef = useRef(null);
 
@@ -127,14 +126,6 @@ function App() {
     }
   };
 
-  const handleDirectedGraph = () => {
-    setGraphType("directed");
-  };
-
-  const handleUndirectedGraph = () => {
-    setGraphType("undirected");
-  };
-
   const handleTopologicalSort = () => {
     //topologicalSort result
     console.log(inputValue);
@@ -187,7 +178,7 @@ function App() {
   };
 
   const handleTree = () => {
-    // Implement Tree functionality
+    // Implementing Tree Layout
     const { nodes: newNodes, edges: newEdges } = processGraphInput(
       inputValue,
       isWeightedChecked
@@ -220,8 +211,22 @@ function App() {
   return (
     <div className="app-container">
       <div className="navbar">
-        <button onClick={handleDirectedGraph}>Directed Graph</button>
-        <button onClick={handleUndirectedGraph}>Undirected Graph</button>
+        <label>
+          <input
+            type="checkbox"
+            checked={isWeightedChecked}
+            onChange={handleWeightedChange}
+          />
+          Weighted
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={isUnweightedChecked}
+            onChange={handleUnweightedChange}
+          />
+          Unweighted
+        </label>
         <button onClick={handleTopologicalSort}>Topological Sort</button>
         <h2>LAYOUT:</h2>
         <button onClick={handleTree}>Tree</button>
@@ -232,23 +237,6 @@ function App() {
       </div>
       <div className="container">
         <div className="input-section">
-          <label>
-            <input
-              type="checkbox"
-              checked={isWeightedChecked}
-              onChange={handleWeightedChange}
-            />
-            Weighted
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              checked={isUnweightedChecked}
-              onChange={handleUnweightedChange}
-            />
-            Unweighted
-          </label>
-
           <textarea
             value={inputValue}
             onChange={handleInputChange}
@@ -284,7 +272,7 @@ function App() {
             layoutType={layoutTypeGraph}
             labelType="all"
             edgeLabelPosition="below"
-            edgeArrowPosition={graphType === "undirected" ? "none" : "end"} // Update edge arrow position based on graph type
+            edgeArrowPosition="end" // Update edge arrow position based on graph type
             theme={darkTheme} // for dark theme use darkTheme
             ref={graphRef}
             draggable
