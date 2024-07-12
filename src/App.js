@@ -1,14 +1,15 @@
 import React, { useState, useRef } from "react";
+import "./App.css";
 import { GraphCanvas, darkTheme, useSelection } from "reagraph";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import { toast, Bounce } from "react-toastify";
 import { processGraphInput } from "./processGraphInput";
 import { bfsTraversal } from "./bfsTraversal";
-import "./App.css"; // Import your CSS file
 import { dfsTraversal } from "./dfsTraversal";
 import { topologicalSort } from "./topologicalSort";
 import { ShortestPath } from "./ShortestPath";
-import { toast, Bounce } from "react-toastify";
+
 function App() {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
@@ -23,7 +24,7 @@ function App() {
   const [isWeightedChecked, setIsWeightedChecked] = useState(false);
   const [isUnweightedChecked, setIsUnweightedChecked] = useState(true);
 
-  // Handlers to update the state
+  // Handling weighted and unweighted checkbox
   const handleWeightedChange = (event) => {
     const checked = event.target.checked;
     setIsWeightedChecked(checked);
@@ -71,7 +72,7 @@ function App() {
     console.log(result.edges);
     console.log(result.shortestDistance);
     if (result.error) {
-      console.error("Invalid input format or empty graph.");
+      console.error("Invalid input format or empty graph!!");
       toast.error(result.error, {
         position: "top-center",
         autoClose: 5000,
