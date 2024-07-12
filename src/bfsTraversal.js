@@ -81,11 +81,11 @@ export function bfsTraversal(connections, isWeighted) {
       }
     };
 
-    // Iterate over all distinct nodes and perform BFS for unvisited nodes
+    // Iterate over all distinct nodes and perform BFS
     DistinctNodes.forEach((node) => {
       if (!visited.has(node)) {
         if (bfsOrder.length > 0) {
-          bfsOrder.push("SePaRaTiOn"); // Separate different connected components
+          bfsOrder.push("SePaRaTiOn"); // Separate different Components of Graph
         }
         bfs(node);
       }
