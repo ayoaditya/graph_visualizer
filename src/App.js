@@ -213,6 +213,7 @@ function App() {
         <label id="weights">
           <label id="unweight">
             <input
+              id="checkbox"
               type="checkbox"
               checked={isWeightedChecked}
               onChange={handleWeightedChange}
@@ -221,6 +222,7 @@ function App() {
           </label>
           <label>
             <input
+              id="checkbox"
               type="checkbox"
               checked={isUnweightedChecked}
               onChange={handleUnweightedChange}
@@ -229,10 +231,10 @@ function App() {
           </label>
         </label>
         <button onClick={handleTopologicalSort}>Topological Sort</button>
-        <h2>Layout:</h2>
+        <h3>Layout:</h3>
         <button onClick={handleTree}>Tree</button>
         <button onClick={handleRandom}>Random</button>
-        <h2>Traversal:</h2>
+        <h3>Traversal:</h3>
         <button onClick={handleBFS}>BFS</button>
         <button onClick={handleDFS}>DFS</button>
       </div>
@@ -255,26 +257,28 @@ function App() {
           <button id="exportButton" onClick={handleExportGraph}>
             Export Graph
           </button>
-          <h1>SHORTEST PATH</h1>
-          <input
-            type="text"
-            placeholder="Enter Source Node"
-            onChange={handleSourceChange}
-            id="sourceNode"
-          />
-          <input
-            type="text"
-            placeholder="Enter Destination Node"
-            onChange={handleDestinationChange}
-            id="destinationNode"
-          />
-          <button id="shortestPath" onClick={findShortestPath}>
-            Find Shortest Path
-          </button>
-          <h3>
-            Shortest Distance Between {sourceValue} And {destinationValue} Is:{" "}
-            {shortestDistance}
-          </h3>
+          <div className="PathClass">
+            <h1>SHORTEST PATH</h1>
+            <input
+              type="text"
+              placeholder="Enter Source Node"
+              onChange={handleSourceChange}
+              id="sourceNode"
+            />
+            <input
+              type="text"
+              placeholder="Enter Destination Node"
+              onChange={handleDestinationChange}
+              id="destinationNode"
+            />
+            <button id="shortestPath" onClick={findShortestPath}>
+              Find Shortest Path
+            </button>
+            <h3>
+              Shortest Distance Between {sourceValue} And {destinationValue} Is:{" "}
+              {shortestDistance}
+            </h3>
+          </div>
         </div>
         <div className="graph-section">
           <GraphCanvas
