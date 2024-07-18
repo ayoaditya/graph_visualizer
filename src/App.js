@@ -1,15 +1,14 @@
 import React, { useState, useRef } from "react";
-import "./App.css";
 import { GraphCanvas, darkTheme, useSelection } from "reagraph";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { processGraphInput } from "./processGraphInput";
 import { bfsTraversal } from "./bfsTraversal";
+import "./App.css"; // Import your CSS file
 import { dfsTraversal } from "./dfsTraversal";
 import { topologicalSort } from "./topologicalSort";
 import { ShortestPath } from "./ShortestPath";
-
+import { toast, Bounce } from "react-toastify";
 function App() {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
@@ -18,13 +17,12 @@ function App() {
   const [destinationValue, setDestinationValue] = useState("");
   const [sourceValue, setSourceValue] = useState("");
   const [layoutTypeGraph, setlayoutTypeGraph] = useState("forceDirected2d");
-
   const graphRef = useRef(null);
 
   const [isWeightedChecked, setIsWeightedChecked] = useState(false);
   const [isUnweightedChecked, setIsUnweightedChecked] = useState(true);
 
-  // Handling weighted and unweighted checkbox
+  // Handlers to update the state
   const handleWeightedChange = (event) => {
     const checked = event.target.checked;
     setIsWeightedChecked(checked);
@@ -72,7 +70,7 @@ function App() {
     console.log(result.edges);
     console.log(result.shortestDistance);
     if (result.error) {
-      console.error("Invalid input format or empty graph!!");
+      console.error("Invalid input format or empty graph.");
       toast.error(result.error, {
         position: "top-center",
         autoClose: 5000,
@@ -179,7 +177,7 @@ function App() {
   };
 
   const handleTree = () => {
-    // Implementing Tree Layout
+    // Implement Tree functionality
     const { nodes: newNodes, edges: newEdges } = processGraphInput(
       inputValue,
       isWeightedChecked
@@ -212,27 +210,29 @@ function App() {
   return (
     <div className="app-container">
       <div className="navbar">
-        <label>
-          <input
-            type="checkbox"
-            checked={isWeightedChecked}
-            onChange={handleWeightedChange}
-          />
-          Weighted
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={isUnweightedChecked}
-            onChange={handleUnweightedChange}
-          />
-          Unweighted
+        <label id="weights">
+          <label id="unweight">
+            <input
+              type="checkbox"
+              checked={isWeightedChecked}
+              onChange={handleWeightedChange}
+            />
+            Weighted
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={isUnweightedChecked}
+              onChange={handleUnweightedChange}
+            />
+            Unweighted
+          </label>
         </label>
         <button onClick={handleTopologicalSort}>Topological Sort</button>
-        <h2>LAYOUT:</h2>
+        <h2>Layout:</h2>
         <button onClick={handleTree}>Tree</button>
         <button onClick={handleRandom}>Random</button>
-        <h2>TRAVERSAL:</h2>
+        <h2>Traversal:</h2>
         <button onClick={handleBFS}>BFS</button>
         <button onClick={handleDFS}>DFS</button>
       </div>
@@ -244,27 +244,35 @@ function App() {
             placeholder="Enter nodes and edges (e.g., 1->2\n2->3)"
             className="textarea-input"
           />
+
           <button
+            id="submit_button"
             onClick={handleSubmit}
             style={{ width: "100%", marginTop: "10px" }}
           >
             Submit
           </button>
-          <button onClick={handleExportGraph}>Export Graph</button>
+          <button id="exportButton" onClick={handleExportGraph}>
+            Export Graph
+          </button>
           <h1>SHORTEST PATH</h1>
           <input
             type="text"
             placeholder="Enter Source Node"
             onChange={handleSourceChange}
+            id="sourceNode"
           />
           <input
             type="text"
             placeholder="Enter Destination Node"
             onChange={handleDestinationChange}
+            id="destinationNode"
           />
-          <button onClick={findShortestPath}>FIND SHORTEST PATH</button>
+          <button id="shortestPath" onClick={findShortestPath}>
+            Find Shortest Path
+          </button>
           <h3>
-            Shortest Distance Between {sourceValue} And {destinationValue} Is:
+            Shortest Distance Between {sourceValue} And {destinationValue} Is:{" "}
             {shortestDistance}
           </h3>
         </div>
