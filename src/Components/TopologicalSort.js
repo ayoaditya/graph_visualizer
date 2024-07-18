@@ -1,7 +1,8 @@
 import { toast, Bounce } from "react-toastify";
-export function dfsTraversal(connections, isWeighted) {
-  console.log(connections);
+
+export function TopologicalSort(connections, isWeighted) {
   let inputError = false;
+  console.log(connections[0]);
   const graph = {};
   const edges = connections.trim().split("\n");
   edges.forEach((edge) => {
@@ -39,8 +40,8 @@ export function dfsTraversal(connections, isWeighted) {
       inputError = true;
     }
   });
-
   console.log(graph);
+
   if (inputError) {
     toast.error("Invalid input format!", {
       position: "top-center",
@@ -55,66 +56,65 @@ export function dfsTraversal(connections, isWeighted) {
     });
     return { nodes: [], edges: [] };
   } else {
-    const visited_dfs = new Set();
-    const dfsOrder = [];
-
-    // set of DistinctNodes
-    const DistinctNodes = new Set(Object.keys(graph)); // Initialize with all keys in the graph
+    const visited = new Set();
+    const onPath = new Set();
+    const topologicalOrder = [];
+    let cycleDetected = false;
 
     function dfs(node) {
-      if (visited_dfs.has(node)) return;
-      visited_dfs.add(node);
-      dfsOrder.push(node);
+      if (cycleDetected) return; // If a cycle is detected, no need to continue
+      if (onPath.has(node)) {
+        cycleDetected = true; // Cycle detected
+        return;
+      }
+      if (visited.has(node)) return;
+
+      onPath.add(node);
       if (graph[node]) {
         graph[node].forEach((neighbor) => {
           dfs(neighbor);
         });
       }
+      onPath.delete(node);
+      visited.add(node);
+      topologicalOrder.push(node);
     }
 
-    // Iterate over all distinct nodes and perform DFS for unvisited nodes
-    DistinctNodes.forEach((node) => {
-      if (!visited_dfs.has(node)) {
-        if (dfsOrder.length > 0) {
-          dfsOrder.push("SePaRaTiOn"); // Separate different connected components
-        }
+    // Iterate over all nodes to handle disconnected graphs and perform DFS
+    Object.keys(graph).forEach((node) => {
+      if (!visited.has(node)) {
         dfs(node);
       }
     });
+    topologicalOrder.reverse();
 
-    console.log(dfsOrder);
+    const newNodes = topologicalOrder.map((node) => ({
+      id: node,
+      label: node,
+      fill: "#a6a5a2",
+    }));
 
-    const newNodes = [];
-    DistinctNodes.forEach((node) => {
-      newNodes.push({
-        id: node,
-        label: node,
-        fill: "#a6a5a2",
+    const newEdges = topologicalOrder.slice(1).map((node, index) => ({
+      source: topologicalOrder[index],
+      target: node,
+      id: `${topologicalOrder[index]}-${node}`,
+    }));
+
+    if (cycleDetected) {
+      toast.error("Cycle Detected!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
       });
-    });
-
-    const newEdges = [];
-    for (let index = 1; index < dfsOrder.length; index++) {
-      const source = dfsOrder[index - 1];
-      const target = dfsOrder[index];
-
-      if (source !== "SePaRaTiOn" && target !== "SePaRaTiOn") {
-        newEdges.push({
-          source,
-          target,
-          id: `${source}-${target}`,
-        });
-      } else if (source === "SePaRaTiOn" && target !== "SePaRaTiOn") {
-        const previousNode = dfsOrder[index - 2];
-        newEdges.push({
-          source: previousNode,
-          target: target,
-          id: `${previousNode}-${target}`,
-          size: 0,
-        });
-      }
+      return { nodes: [], edges: [] };
+    } else {
+      return { nodes: newNodes, edges: newEdges };
     }
-
-    return { nodes: newNodes, edges: newEdges };
   }
 }

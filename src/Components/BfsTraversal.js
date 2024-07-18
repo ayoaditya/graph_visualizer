@@ -1,6 +1,6 @@
 import { toast, Bounce } from "react-toastify";
 
-export function bfsTraversal(connections, isWeighted) {
+export function BfsTraversal(connections, isWeighted) {
   let inputError = false;
   console.log(connections[0]);
   const graph = {};

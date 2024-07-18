@@ -1,7 +1,7 @@
 import { toast, Bounce } from "react-toastify";
 // import { Icon } from "reagraph";
 
-export const processGraphInput = (inputValue, isWeighted) => {
+export const ProcessGraphInput = (inputValue, isWeighted) => {
   const graph = {};
   const edges = [];
   let inputError = false;

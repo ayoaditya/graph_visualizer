@@ -67,10 +67,10 @@ body {
 /* Style for buttons in navbar */
 .navbar button {
   padding: 10px 20px;
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
   border: none;
-  background-color: #555; /* Match navbar background */
+  background-color: #737373; /* Match navbar background */
   font-family: sans-serif;
   border-radius: 8px;
 }
@@ -268,14 +268,14 @@ body {
   transform: translateY(-50%) scale(0.7);
   border: 3px solid #222;
   border-radius: 30px 100px 100px 100px;
-  background-color: #fa849d;
+  background-color: #0d0b0b;
   /*background-color: #8f8e8e;*/
   box-sizing: border-box;
   transition: all 0.5s;
 }
 
 #weights input[type="checkbox"]:checked {
-  background-color: #f89393;
+  background-color: #737373;
   /*background-color: #646464;*/
   border-radius: 100px 100px 30px 100px;
 }
