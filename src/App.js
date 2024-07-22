@@ -298,6 +298,7 @@ function App() {
               onCanvasClick={onCanvasClick}
               onNodeClick={onNodeClick}
             />
+            <Analytics />
           </div>
         </div>
         <ToastContainer />
