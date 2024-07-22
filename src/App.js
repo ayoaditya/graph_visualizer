@@ -1,4 +1,3 @@
-import { Analytics } from "@vercel/analytics/react";
 import React, { useState, useRef } from "react";
 import { GraphCanvas, darkTheme, useSelection } from "reagraph";
 import { ToastContainer } from "react-toastify";
@@ -10,6 +9,8 @@ import { DfsTraversal } from "./Components/DfsTraversal";
 import { TopologicalSort } from "./Components/TopologicalSort";
 import { ShortestPath } from "./Components/ShortestPath";
 import { toast, Bounce } from "react-toastify";
+//for vercel anayltics
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const [nodes, setNodes] = useState([]);
