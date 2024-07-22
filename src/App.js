@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import React, { useState, useRef } from "react";
 import { GraphCanvas, darkTheme, useSelection } from "reagraph";
 import { ToastContainer } from "react-toastify";
