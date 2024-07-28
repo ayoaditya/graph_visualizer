@@ -22,9 +22,9 @@ html {
 .FSPDist {
   font-size: 1.8rem;
 }
-
+/*toast msg size*/
 .toast-message {
-  font-size: 1.5em; /* Adjust the size as needed */
+  font-size: 1.5em;
 }
 
 /* Navbar section occupying 20% of the screen height */
