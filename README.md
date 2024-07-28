@@ -19,14 +19,13 @@ Check out the live demo of the project here: [Graph Visualizer](https://graph-vi
 ## Installation
 
 **Clone the repository**
-   ```bash
    git clone https://github.com/ayoaditya/graph_visualizer
 
 
 ## Usage
 
 1. **Enter Graph Data**: Provide nodes and edges in the input section (e.g., `1 2\n2 3`).
-2. **Select Algorithm**: Choose from BFS, DFS, Shortest Path, or Topological Sort.
+2. **Select Algorithm**: Choose from BFS, DFS, Shortest Path, Topological Sort or Normal Visualization.
 3. **Submit Graph**: Click the "Submit" button to visualize the graph.
 4. **Find Shortest Path**: Enter source and destination nodes and click "Find Shortest Path" to get the shortest path.
 5. **Export Graph**: Click "Export Graph" to download the current graph visualization as an image.
