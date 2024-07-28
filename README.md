@@ -1,8 +1,5 @@
 # Graph Visualizer
 
-![image](https://github.com/user-attachments/assets/c6662790-bc31-40cc-bf0f-35024b08a981)
-
-
 ## Description
 
 Graph Visualizer is an interactive tool developed to help visualize and analyze graph algorithms. It supports various functionalities including Breadth-First Search (BFS), Depth-First Search (DFS), shortest path calculation, and topological sorting. The application allows for real-time graph analysis, showcasing traversal paths, shortest paths, and topological orders with distinct visual differentiation.
@@ -21,9 +18,31 @@ Check out the live demo of the project here: [Graph Visualizer](https://graph-vi
 
 ## Installation
 
-To run this project locally, follow these steps:
-
-1. **Clone the repository**
-
+**Clone the repository**
    ```bash
    git clone https://github.com/ayoaditya/graph_visualizer
+
+
+## Usage
+
+1. **Enter Graph Data**: Provide nodes and edges in the input section (e.g., `1 2\n2 3`).
+2. **Select Algorithm**: Choose from BFS, DFS, Shortest Path, or Topological Sort.
+3. **Submit Graph**: Click the "Submit" button to visualize the graph.
+4. **Find Shortest Path**: Enter source and destination nodes and click "Find Shortest Path" to get the shortest path.
+5. **Export Graph**: Click "Export Graph" to download the current graph visualization as an image.
+
+## Components
+
+- **TopologicalSort**: Handles topological sorting of the graph.
+- **ProcessGraphInput**: Processes and validates graph input.
+- **ShortestPath**: Calculates the shortest path between nodes.
+- **DfsTraversal**: Executes Depth-First Search.
+- **BfsTraversal**: Executes Breadth-First Search.
+
+## Technologies Used
+
+- **React**: For building the user interface.
+- **reagraph**: For rendering the graph and its layouts.
+- **react-toastify**: For displaying error messages.
+- **CSS**: For styling the application.
+
