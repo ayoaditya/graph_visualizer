@@ -5,7 +5,8 @@ export function TopologicalSort(connections, isWeighted) {
   console.log(connections[0]);
   const graph = {};
   const edges = connections.trim().split("\n");
-  edges.forEach((edge) => {
+  edges.forEach((temp) => {
+    let edge = temp.trim();
     if (isWeighted === false && edge.split(" ").length === 3) {
       inputError = true;
     } else if (edge.split(" ").length === 2) {

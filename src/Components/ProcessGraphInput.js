@@ -8,7 +8,8 @@ export const ProcessGraphInput = (inputValue, isWeighted) => {
   const connections = inputValue;
 
   const edgesList = connections.trim().split("\n");
-  edgesList.forEach((edge) => {
+  edgesList.forEach((temp) => {
+    let edge = temp.trim();
     if (isWeighted === false && edge.split(" ").length === 3) {
       inputError = true;
       return { error: "Invalid Input!" };

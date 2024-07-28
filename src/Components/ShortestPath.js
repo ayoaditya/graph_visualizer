@@ -13,7 +13,8 @@ export function ShortestPath(inputValue, src, dest, isWeighted) {
   const edges = [];
 
   // Parse the input to build the graph and edges list
-  edgesList.forEach((edge) => {
+  edgesList.forEach((temp) => {
+    let edge = temp.trim();
     if (isWeighted === false && edge.split(" ").length === 3) {
       inputError = true;
       return { error: "Invalid Input!" };

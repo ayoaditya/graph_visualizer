@@ -4,7 +4,8 @@ export function DfsTraversal(connections, isWeighted) {
   let inputError = false;
   const graph = {};
   const edges = connections.trim().split("\n");
-  edges.forEach((edge) => {
+  edges.forEach((temp) => {
+    let edge = temp.trim();
     if (isWeighted === false && edge.split(" ").length === 3) {
       inputError = true;
     } else if (edge.split(" ").length === 2) {
