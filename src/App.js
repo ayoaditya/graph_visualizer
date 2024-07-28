@@ -2,13 +2,15 @@ import React, { useState, useRef } from "react";
 import { GraphCanvas, darkTheme, useSelection } from "reagraph";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { processGraphInput } from "./processGraphInput";
-import { bfsTraversal } from "./bfsTraversal";
 import "./App.css"; // Import your CSS file
-import { dfsTraversal } from "./dfsTraversal";
-import { topologicalSort } from "./topologicalSort";
-import { ShortestPath } from "./ShortestPath";
 import { toast, Bounce } from "react-toastify";
+
+import { TopologicalSort } from "./Components/TopologicalSort";
+import { ProcessGraphInput } from "./Components/ProcessGraphInput";
+import { ShortestPath } from "./Components/ShortestPath";
+import { DfsTraversal } from "./Components/DfsTraversal";
+import { BfsTraversal } from "./Components/BfsTraversal";
+
 function App() {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
@@ -93,7 +95,7 @@ function App() {
   const handleSubmit = () => {
     console.log(typeof inputValue);
     console.log(inputValue);
-    const { nodes: newNodes, edges: newEdges } = processGraphInput(
+    const { nodes: newNodes, edges: newEdges } = ProcessGraphInput(
       inputValue,
       isWeightedChecked
     );
@@ -128,7 +130,7 @@ function App() {
   const handleTopologicalSort = () => {
     //topologicalSort result
     console.log(inputValue);
-    const { nodes: newNodes, edges: newEdges } = topologicalSort(
+    const { nodes: newNodes, edges: newEdges } = TopologicalSort(
       inputValue,
       isWeightedChecked
     );
@@ -145,7 +147,7 @@ function App() {
   const handleBFS = () => {
     // BFS result
     console.log(inputValue);
-    const { nodes: newNodes, edges: newEdges } = bfsTraversal(
+    const { nodes: newNodes, edges: newEdges } = BfsTraversal(
       inputValue,
       isWeightedChecked
     );
@@ -162,7 +164,7 @@ function App() {
   const handleDFS = () => {
     // DFS result
     console.log(inputValue);
-    const { nodes: newNodes, edges: newEdges } = dfsTraversal(
+    const { nodes: newNodes, edges: newEdges } = DfsTraversal(
       inputValue,
       isWeightedChecked
     );
@@ -178,7 +180,7 @@ function App() {
 
   const handleTree = () => {
     // Implement Tree functionality
-    const { nodes: newNodes, edges: newEdges } = processGraphInput(
+    const { nodes: newNodes, edges: newEdges } = ProcessGraphInput(
       inputValue,
       isWeightedChecked
     );
@@ -193,7 +195,7 @@ function App() {
   };
   const handleRandom = () => {
     // Implement Tree functionality
-    const { nodes: newNodes, edges: newEdges } = processGraphInput(
+    const { nodes: newNodes, edges: newEdges } = ProcessGraphInput(
       inputValue,
       isWeightedChecked
     );
