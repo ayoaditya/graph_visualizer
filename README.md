@@ -45,21 +45,25 @@ Check out the live demo of the project here: [Graph Visualizer](https://graph-vi
 - **react-toastify**: For displaying error messages.
 - **CSS**: For styling the application.
 
-shortest dist
+## Screenshots
+
+**Shortest Distance Between Two Nodes**
 ![image](https://github.com/user-attachments/assets/a12a06d1-ecc3-4f6d-a4ac-65c1d766868a)
+
+**Create Custom Graph Configurations**
 
 ![graph](https://github.com/user-attachments/assets/c2b72a53-a213-483b-a13c-6e58812973b3)
 
-tree layout
+**Tree Layout**
 ![image](https://github.com/user-attachments/assets/2a8657cc-441b-45d1-8e24-04c644227d7a)
 
-bfs traversal
+**BFS Traversal**
 ![image](https://github.com/user-attachments/assets/20804b24-9b22-45f4-8a9a-ec579941b099)
 
-dfs traversal
+**DFS Traversal**
 ![image](https://github.com/user-attachments/assets/f74a56d0-5be1-4f3e-b3df-9b35cd8ac61f)
 
-topological sort
+**Topological Sort**
 ![image](https://github.com/user-attachments/assets/d6e764a5-76e2-496c-b213-dd6c2ad17a3b)
 
 
