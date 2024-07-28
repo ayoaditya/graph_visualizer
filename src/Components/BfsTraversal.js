@@ -43,6 +43,7 @@ export function BfsTraversal(connections, isWeighted) {
   console.log(graph);
   if (inputError) {
     toast.error("Invalid input format!", {
+      className: "toast-message",
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,

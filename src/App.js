@@ -74,6 +74,7 @@ function App() {
     if (result.error) {
       console.error("Invalid input format or empty graph.");
       toast.error(result.error, {
+        className: "toast-message",
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,

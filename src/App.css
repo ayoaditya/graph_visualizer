@@ -14,10 +14,16 @@ html {
   flex-direction: column;
   height: 100vh;
 }
+
+.toast-message {
+  font-size: 1.5em; /* Adjust the size as needed */
+}
+
 /* Navbar section occupying 20% of the screen height */
 .navbar {
   display: flex;
   justify-content: space-around;
+  font-size: 1.8rem;
   align-items: center;
   height: 10vh; /* 20% height for the navbar */
   background-color: #333; /* Example background color */
@@ -83,7 +89,7 @@ html {
 }
 
 .navbar button:focus {
-  background-color: rgb(243, 181, 181);
+  background-color: rgb(188, 137, 137);
 }
 
 #submit_button {
@@ -136,7 +142,6 @@ html {
     padding: 1.2rem 5rem;
   }
 }
-
 
 #exportButton {
   font-family: "Open Sans", sans-serif;
@@ -273,14 +278,14 @@ html {
   transform: translateY(-50%) scale(0.7);
   border: 0.3rem solid #222;
   border-radius: 3rem 10rem 10rem 10rem;
-  background-color: #fa849d;
+  background-color: #968387;
   /*background-color: #8f8e8e;*/
   box-sizing: border-box;
   transition: all 0.5s;
 }
 
 #weights input[type="checkbox"]:checked {
-  background-color: #f89393;
+  background-color: #968387;
   /*background-color: #646464;*/
   border-radius: 10rem 10rem 3rem 10rem;
 }
