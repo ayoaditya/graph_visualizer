@@ -6,10 +6,10 @@ export function BfsTraversal(connections, isWeighted) {
   const graph = {};
   const edges = connections.trim().split("\n");
   edges.forEach((edge) => {
-    if (isWeighted === false && edge.split("->").length === 3) {
+    if (isWeighted === false && edge.split(" ").length === 3) {
       inputError = true;
-    } else if (edge.split("->").length === 2) {
-      const [start, end] = edge.split("->").map((node) => node.trim());
+    } else if (edge.split(" ").length === 2) {
+      const [start, end] = edge.split(" ").map((node) => node.trim());
       if (!start || !end) {
         inputError = true;
       } else {
@@ -22,8 +22,8 @@ export function BfsTraversal(connections, isWeighted) {
           graph[end] = [];
         }
       }
-    } else if (edge.split("->").length === 3) {
-      const [start, end, wt] = edge.split("->").map((node) => node.trim());
+    } else if (edge.split(" ").length === 3) {
+      const [start, end, wt] = edge.split(" ").map((node) => node.trim());
       if (!start || !end || isNaN(wt)) {
         inputError = true;
       } else {

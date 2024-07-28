@@ -6,10 +6,10 @@ export function TopologicalSort(connections, isWeighted) {
   const graph = {};
   const edges = connections.trim().split("\n");
   edges.forEach((edge) => {
-    if (isWeighted === false && edge.split("->").length === 3) {
+    if (isWeighted === false && edge.split(" ").length === 3) {
       inputError = true;
-    } else if (edge.split("->").length === 2) {
-      const [start, end] = edge.split("->").map((node) => node.trim());
+    } else if (edge.split(" ").length === 2) {
+      const [start, end] = edge.split(" ").map((node) => node.trim());
       if (!start || !end) {
         inputError = true;
       } else {
@@ -22,8 +22,8 @@ export function TopologicalSort(connections, isWeighted) {
           graph[end] = [];
         }
       }
-    } else if (edge.split("->").length === 3) {
-      const [start, end, wt] = edge.split("->").map((node) => node.trim());
+    } else if (edge.split(" ").length === 3) {
+      const [start, end, wt] = edge.split(" ").map((node) => node.trim());
       if (!start || !end || isNaN(wt)) {
         inputError = true;
       } else {
@@ -44,6 +44,7 @@ export function TopologicalSort(connections, isWeighted) {
 
   if (inputError) {
     toast.error("Invalid input format!", {
+      className: "toast-message",
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -102,6 +103,7 @@ export function TopologicalSort(connections, isWeighted) {
 
     if (cycleDetected) {
       toast.error("Cycle Detected!", {
+        className: "toast-message",
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,

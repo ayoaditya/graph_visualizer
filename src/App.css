@@ -15,6 +15,14 @@ html {
   height: 100vh;
 }
 
+.FSPbt {
+  font-size: 1.65rem;
+}
+
+.FSPDist {
+  font-size: 1.8rem;
+}
+
 .toast-message {
   font-size: 1.5em; /* Adjust the size as needed */
 }
@@ -26,7 +34,7 @@ html {
   font-size: 1.8rem;
   align-items: center;
   height: 10vh; /* 20% height for the navbar */
-  background-color: #333; /* Example background color */
+  background-color: #2c2b2b; /* Example background color */
   color: white; /* Example text color */
   font-family: sans-serif;
 }
@@ -79,13 +87,13 @@ html {
   font-size: 1.4rem;
   cursor: pointer;
   border: none;
-  background-color: #555; /* Match navbar background */
+  background-color: #b8b8b8; /* Match navbar background */
   font-family: sans-serif;
   border-radius: 0.8rem;
 }
 
 .navbar button:hover {
-  background-color: #777; /* Hover color */
+  background-color: #7e7e7e; /* Hover color */
 }
 
 .navbar button:focus {
@@ -104,8 +112,8 @@ html {
   cursor: pointer;
   display: inline-block;
   font-family: sans-serif;
-  font-size: 1.4rem;
-  font-weight: 400;
+  /* font-size: 1.4rem; */
+  font-weight: 450;
   line-height: 2rem;
   margin: 0 0.5rem 1rem 0;
   overflow: visible;
@@ -210,8 +218,8 @@ html {
   cursor: pointer;
   flex: 0 0 auto;
   font-family: sans-serif;
-  font-size: 1.125rem;
-  font-weight: 600;
+  /* font-size: 1.125rem; */
+  font-weight: 450;
   line-height: 1.5rem;
   padding: 0.75rem 1.2rem;
   text-align: center;

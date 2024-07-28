@@ -14,11 +14,11 @@ export function ShortestPath(inputValue, src, dest, isWeighted) {
 
   // Parse the input to build the graph and edges list
   edgesList.forEach((edge) => {
-    if (isWeighted === false && edge.split("->").length === 3) {
+    if (isWeighted === false && edge.split(" ").length === 3) {
       inputError = true;
       return { error: "Invalid Input!" };
-    } else if (edge.split("->").length === 3) {
-      const [start, end, weight] = edge.split("->").map((node) => node.trim());
+    } else if (edge.split(" ").length === 3) {
+      const [start, end, weight] = edge.split(" ").map((node) => node.trim());
       const weightNum = parseFloat(weight);
       if (!start || !end || isNaN(weightNum)) {
         inputError = true;
@@ -33,8 +33,8 @@ export function ShortestPath(inputValue, src, dest, isWeighted) {
           graph[end] = [];
         }
       }
-    } else if (edge.split("->").length === 2) {
-      const [start, end] = edge.split("->").map((node) => node.trim());
+    } else if (edge.split(" ").length === 2) {
+      const [start, end] = edge.split(" ").map((node) => node.trim());
       if (!start || !end) {
         inputError = true;
       } else {

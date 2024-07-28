@@ -256,7 +256,7 @@ function App() {
           <textarea
             value={inputValue}
             onChange={handleInputChange}
-            placeholder="Enter nodes and edges (e.g., 1->2\n2->3)"
+            placeholder="Enter nodes and edges (e.g., 1 2\n2 3)"
             className="textarea-input"
           />
 
@@ -264,6 +264,7 @@ function App() {
             id="submit_button"
             onClick={handleSubmit}
             style={{ width: "100%", marginTop: "10px" }}
+            className="FSPDist"
           >
             Submit
           </button>
@@ -284,13 +285,17 @@ function App() {
               onChange={handleDestinationChange}
               id="destinationNode"
             />
-            <button id="shortestPath" onClick={findShortestPath}>
+            <button
+              id="shortestPath"
+              className="FSPbt"
+              onClick={findShortestPath}
+            >
               Find Shortest Path
             </button>
-            <h3>
+            <h2 className="FSPDist">
               Shortest Distance Between {sourceValue} And {destinationValue} Is:{" "}
               {shortestDistance}
-            </h3>
+            </h2>
           </div>
         </div>
         <div className="graph-section">

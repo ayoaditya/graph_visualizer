@@ -9,11 +9,11 @@ export const ProcessGraphInput = (inputValue, isWeighted) => {
 
   const edgesList = connections.trim().split("\n");
   edgesList.forEach((edge) => {
-    if (isWeighted === false && edge.split("->").length === 3) {
+    if (isWeighted === false && edge.split(" ").length === 3) {
       inputError = true;
       return { error: "Invalid Input!" };
-    } else if (edge.split("->").length === 3) {
-      const [start, end, weight] = edge.split("->").map((node) => node.trim());
+    } else if (edge.split(" ").length === 3) {
+      const [start, end, weight] = edge.split(" ").map((node) => node.trim());
       const weightNum = parseFloat(weight);
       if (!start || !end || isNaN(weightNum)) {
         inputError = true;
@@ -28,8 +28,8 @@ export const ProcessGraphInput = (inputValue, isWeighted) => {
           graph[end] = [];
         }
       }
-    } else if (edge.split("->").length === 2) {
-      const [start, end] = edge.split("->").map((node) => node.trim());
+    } else if (edge.split(" ").length === 2) {
+      const [start, end] = edge.split(" ").map((node) => node.trim());
       if (!start || !end) {
         inputError = true;
       } else {
@@ -54,6 +54,7 @@ export const ProcessGraphInput = (inputValue, isWeighted) => {
   const newEdges = [];
   if (inputError) {
     toast.error("Invalid input format!", {
+      className: "toast-message",
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
