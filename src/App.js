@@ -1,16 +1,14 @@
-import { Analytics } from "@vercel/analytics/react";
 import React, { useState, useRef } from "react";
 import { GraphCanvas, darkTheme, useSelection } from "reagraph";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ProcessGraphInput } from "./Components/ProcessGraphInput";
-import { BfsTraversal } from "./Components/BfsTraversal";
+import { processGraphInput } from "./processGraphInput";
+import { bfsTraversal } from "./bfsTraversal";
 import "./App.css"; // Import your CSS file
-import { DfsTraversal } from "./Components/DfsTraversal";
-import { TopologicalSort } from "./Components/TopologicalSort";
-import { ShortestPath } from "./Components/ShortestPath";
+import { dfsTraversal } from "./dfsTraversal";
+import { topologicalSort } from "./topologicalSort";
+import { ShortestPath } from "./ShortestPath";
 import { toast, Bounce } from "react-toastify";
-
 function App() {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
@@ -95,7 +93,7 @@ function App() {
   const handleSubmit = () => {
     console.log(typeof inputValue);
     console.log(inputValue);
-    const { nodes: newNodes, edges: newEdges } = ProcessGraphInput(
+    const { nodes: newNodes, edges: newEdges } = processGraphInput(
       inputValue,
       isWeightedChecked
     );
@@ -130,7 +128,7 @@ function App() {
   const handleTopologicalSort = () => {
     //topologicalSort result
     console.log(inputValue);
-    const { nodes: newNodes, edges: newEdges } = TopologicalSort(
+    const { nodes: newNodes, edges: newEdges } = topologicalSort(
       inputValue,
       isWeightedChecked
     );
@@ -147,7 +145,7 @@ function App() {
   const handleBFS = () => {
     // BFS result
     console.log(inputValue);
-    const { nodes: newNodes, edges: newEdges } = BfsTraversal(
+    const { nodes: newNodes, edges: newEdges } = bfsTraversal(
       inputValue,
       isWeightedChecked
     );
@@ -164,7 +162,7 @@ function App() {
   const handleDFS = () => {
     // DFS result
     console.log(inputValue);
-    const { nodes: newNodes, edges: newEdges } = DfsTraversal(
+    const { nodes: newNodes, edges: newEdges } = dfsTraversal(
       inputValue,
       isWeightedChecked
     );
@@ -180,7 +178,7 @@ function App() {
 
   const handleTree = () => {
     // Implement Tree functionality
-    const { nodes: newNodes, edges: newEdges } = ProcessGraphInput(
+    const { nodes: newNodes, edges: newEdges } = processGraphInput(
       inputValue,
       isWeightedChecked
     );
@@ -195,7 +193,7 @@ function App() {
   };
   const handleRandom = () => {
     // Implement Tree functionality
-    const { nodes: newNodes, edges: newEdges } = ProcessGraphInput(
+    const { nodes: newNodes, edges: newEdges } = processGraphInput(
       inputValue,
       isWeightedChecked
     );
@@ -210,99 +208,106 @@ function App() {
   };
 
   return (
-    <div className="Main">
-      <div className="app-container">
-        <div className="navbar">
-          <label id="weights">
-            <label id="unweight">
-              <input
-                id="checkbox"
-                type="checkbox"
-                checked={isWeightedChecked}
-                onChange={handleWeightedChange}
-              />
-              Weighted
-            </label>
-            <label>
-              <input
-                id="checkbox"
-                type="checkbox"
-                checked={isUnweightedChecked}
-                onChange={handleUnweightedChange}
-              />
-              Unweighted
-            </label>
+    <div className="app-container">
+      <div className="navbar">
+        <label id="weights">
+          <label id="unweight">
+            <input
+              id="checkbox"
+              type="checkbox"
+              checked={isWeightedChecked}
+              onChange={handleWeightedChange}
+            />
+            Weighted
           </label>
-          <button onClick={handleTopologicalSort}>Topological Sort</button>
-          <h3>Layout:</h3>
-          <button onClick={handleTree}>Tree</button>
-          <button onClick={handleRandom}>Random</button>
-          <h3>Traversal:</h3>
-          <button onClick={handleBFS}>BFS</button>
-          <button onClick={handleDFS}>DFS</button>
-        </div>
-        <div className="container">
-          <div className="input-section">
-            <textarea
-              value={inputValue}
-              onChange={handleInputChange}
-              placeholder="Enter nodes and edges (e.g., 1->2\n2->3)"
-              className="textarea-input"
+          <label>
+            <input
+              id="checkbox"
+              type="checkbox"
+              checked={isUnweightedChecked}
+              onChange={handleUnweightedChange}
             />
-
-            <button
-              id="submit_button"
-              onClick={handleSubmit}
-              style={{ width: "100%", marginTop: "10px" }}
-            >
-              Submit
-            </button>
-            <button id="exportButton" onClick={handleExportGraph}>
-              Export Graph
-            </button>
-            <div className="PathClass">
-              <h1>SHORTEST PATH</h1>
-              <input
-                type="text"
-                placeholder="Enter Source Node"
-                onChange={handleSourceChange}
-                id="sourceNode"
-              />
-              <input
-                type="text"
-                placeholder="Enter Destination Node"
-                onChange={handleDestinationChange}
-                id="destinationNode"
-              />
-              <button id="shortestPath" onClick={findShortestPath}>
-                Find Shortest Path
-              </button>
-              <h3>
-                Shortest Distance Between {sourceValue} And {destinationValue}{" "}
-                Is: {shortestDistance}
-              </h3>
-            </div>
-          </div>
-          <div className="graph-section">
-            <GraphCanvas
-              layoutType={layoutTypeGraph}
-              labelType="all"
-              edgeLabelPosition="below"
-              edgeArrowPosition="end" // Update edge arrow position based on graph type
-              theme={darkTheme} // for dark theme use darkTheme
-              ref={graphRef}
-              draggable
-              nodes={nodes}
-              edges={edges}
-              selections={selections}
-              onCanvasClick={onCanvasClick}
-              onNodeClick={onNodeClick}
-            />
-            <Analytics />
-          </div>
-        </div>
-        <ToastContainer />
+            Unweighted
+          </label>
+        </label>
+        <button className="Topo" onClick={handleTopologicalSort}>
+          Topological Sort
+        </button>
+        <h3>Layout:</h3>
+        <button className="Layout" onClick={handleTree}>
+          Tree
+        </button>
+        <button className="Layout" onClick={handleRandom}>
+          Random
+        </button>
+        <h3 className="Traversal">Traversal:</h3>
+        <button className="Traversal" onClick={handleBFS}>
+          BFS
+        </button>
+        <button className="Traversal" onClick={handleDFS}>
+          DFS
+        </button>
       </div>
+      <div className="container">
+        <div className="input-section">
+          <textarea
+            value={inputValue}
+            onChange={handleInputChange}
+            placeholder="Enter nodes and edges (e.g., 1->2\n2->3)"
+            className="textarea-input"
+          />
+
+          <button
+            id="submit_button"
+            onClick={handleSubmit}
+            style={{ width: "100%", marginTop: "10px" }}
+          >
+            Submit
+          </button>
+          <button id="exportButton" onClick={handleExportGraph}>
+            Export Graph
+          </button>
+          <div className="PathClass">
+            <h1>SHORTEST PATH</h1>
+            <input
+              type="text"
+              placeholder="Enter Source Node"
+              onChange={handleSourceChange}
+              id="sourceNode"
+            />
+            <input
+              type="text"
+              placeholder="Enter Destination Node"
+              onChange={handleDestinationChange}
+              id="destinationNode"
+            />
+            <button id="shortestPath" onClick={findShortestPath}>
+              Find Shortest Path
+            </button>
+            <h3>
+              Shortest Distance Between {sourceValue} And {destinationValue} Is:{" "}
+              {shortestDistance}
+            </h3>
+          </div>
+        </div>
+        <div className="graph-section">
+          <GraphCanvas
+            layoutType={layoutTypeGraph}
+            labelType="all"
+            edgeLabelPosition="below"
+            edgeArrowPosition="end" // Update edge arrow position based on graph type
+            theme={darkTheme} // for dark theme use darkTheme
+            ref={graphRef}
+            draggable
+            nodes={nodes}
+            edges={edges}
+            selections={selections}
+            onCanvasClick={onCanvasClick}
+            onNodeClick={onNodeClick}
+          />
+        </div>
+      </div>
+      <ToastContainer />
     </div>
   );
 }

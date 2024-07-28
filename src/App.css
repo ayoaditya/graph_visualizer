@@ -1,10 +1,13 @@
-/* App container to hold entire application */
+/*/* App container to hold entire application */
 body {
   --radial-menu-background: #fff;
   --radial-menu-color: #000;
   --radial-menu-border: #aacbd2;
   --radial-menu-active-color: #000;
   --radial-menu-active-background: #d8e6ea;
+}
+html {
+  font-size: 62.5%;
 }
 .app-container {
   display: flex;
@@ -31,7 +34,7 @@ body {
 /* Input section taking up 30% of the width */
 .input-section {
   flex: 0 0 30%;
-  padding: 13px;
+  padding: 1.3rem;
   box-sizing: border-box;
   background-color: lightgray;
   overflow-y: auto; /* In case content overflows */
@@ -41,7 +44,7 @@ body {
 /* Graph section taking up 70% of the width */
 .graph-section {
   flex: 1 1 70%;
-  padding: 20px;
+  padding: 2rem;
   box-sizing: border-box;
   position: relative;
   font-family: sans-serif;
@@ -58,21 +61,21 @@ body {
   resize: none;
   width: 100%;
   background-color: whitesmoke;
-  height: 250px;
-  margin-bottom: 10px;
-  font-size: 16px;
+  height: 25rem;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
   font-family: "Gill Sans", sans-serif;
 }
 
 /* Style for buttons in navbar */
 .navbar button {
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
   cursor: pointer;
   border: none;
-  background-color: #737373; /* Match navbar background */
+  background-color: #555; /* Match navbar background */
   font-family: sans-serif;
-  border-radius: 8px;
+  border-radius: 0.8rem;
 }
 
 .navbar button:hover {
@@ -87,20 +90,20 @@ body {
   appearance: button;
   background-color: #000;
   background-image: none;
-  border: 1px solid #000;
-  border-radius: 4px;
-  box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+  border: 0.1rem solid #000;
+  border-radius: 0.4rem;
+  box-shadow: #fff 0.2rem 0.2rem 0 0, #000 0.2rem 0.2rem 0.1rem;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
   display: inline-block;
   font-family: sans-serif;
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: 400;
-  line-height: 20px;
-  margin: 0 5px 10px 0;
+  line-height: 2rem;
+  margin: 0 0.5rem 1rem 0;
   overflow: visible;
-  padding: 12px 40px;
+  padding: 1.2rem 4rem;
   text-align: center;
   text-transform: none;
   touch-action: manipulation;
@@ -119,33 +122,34 @@ body {
 }
 
 #submit_button:active {
-  box-shadow: rgba(0, 0, 0, 0.125) 0 3px 5px inset;
+  box-shadow: rgba(0, 0, 0, 0.125) 0 0.3rem 0.5rem inset;
   outline: 0;
 }
 
 #submit_button:not([disabled]):active {
-  box-shadow: #fff 1px 1px 0 0, #000 2px 2px 0 1px;
-  transform: translate(2px, 2px);
+  box-shadow: #fff 0.1rem 0.1rem 0 0, #000 0.2rem 0.2rem 0 0.1rem;
+  transform: translate(0.2rem, 0.2rem);
 }
 
 @media (min-width: 768px) {
   #submit_button {
-    padding: 12px 50px;
+    padding: 1.2rem 5rem;
   }
 }
 
 #exportButton {
   font-family: "Open Sans", sans-serif;
-  font-size: 10px;
-  letter-spacing: 2px;
+  font-size: 1rem;
+  letter-spacing: 0.2rem;
   text-decoration: none;
   text-transform: camelcase;
   color: #000;
   cursor: pointer;
-  border: 1.5px solid;
-  padding: 0.25em 0.5em;
-  box-shadow: 0.5px 0.5px 0px 0px, 1px 1px 0px 0px, 1.5px 1.5px 0px 0px,
-    2px 2px 0px 0px, 2.5px 2.5px 0px 0px;
+  border: 0.15rem solid;
+  padding: 0.25rem 0.5rem;
+  box-shadow: 0.05rem 0.05rem 0rem 0rem, 0.1rem 0.1rem 0rem 0rem,
+    0.15rem 0.15rem 0rem 0rem, 0.2rem 0.2rem 0rem 0rem,
+    0.25rem 0.25rem 0rem 0rem;
   position: relative;
   user-select: none;
   -webkit-user-select: none;
@@ -153,47 +157,47 @@ body {
 }
 
 #exportButton:active {
-  box-shadow: 0px 0px 0px 0px;
-  top: 5px;
-  left: 5px;
+  box-shadow: 0rem 0rem 0rem 0rem;
+  top: 0.5rem;
+  left: 0.5rem;
 }
 
 @media (min-width: 768px) {
   .button-54 {
-    padding: 0.25em 0.75em;
+    padding: 0.25rem 0.75rem;
   }
 }
 #sourceNode {
-  padding: 6px 12px;
+  padding: 0.6rem 1.2rem;
   background: rgb(31, 32, 35);
-  border: 1px solid rgb(60, 63, 68);
-  border-radius: 4px;
-  font-size: 13px;
+  border: 0.1rem solid rgb(60, 63, 68);
+  border-radius: 0.4rem;
+  font-size: 1.3rem;
   color: rgb(247, 248, 248);
-  height: 20px;
-  width: 150px;
+  height: 2rem;
+  width: 15rem;
   appearance: none;
   transition: border 0.15s ease 0s;
-  margin-right: 10px;
+  margin-right: 1rem;
   font-family: sans-serif;
 }
 #destinationNode {
-  padding: 6px 12px;
+  padding: 0.6rem 1.2rem;
   background: rgb(31, 32, 35);
-  border: 1px solid rgb(60, 63, 68);
-  border-radius: 4px;
-  font-size: 13px;
+  border: 0.1rem solid rgb(60, 63, 68);
+  border-radius: 0.4rem;
+  font-size: 1.3rem;
   color: rgb(247, 248, 248);
-  height: 20px;
-  width: 150px;
+  height: 2rem;
+  width: 15rem;
   appearance: none;
   transition: border 0.15s ease 0s;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
   font-family: sans-serif;
 }
 #shortestPath {
   background-color: #000;
-  border: 1px solid transparent;
+  border: 0.1rem solid transparent;
   border-radius: 0.75rem;
   box-sizing: border-box;
   color: #ffffff;
@@ -222,8 +226,8 @@ body {
 
 #shortestPath:focus {
   box-shadow: none;
-  outline: 2px solid transparent;
-  outline-offset: 2px;
+  outline: 0.2rem solid transparent;
+  outline-offset: 0.2rem;
 }
 
 @media (min-width: 768px) {
@@ -232,15 +236,15 @@ body {
   }
 }
 #weights {
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
   justify-content: space-around;
   font-family: sans-serif;
-  font-size: 20px;
-  margin-bottom: 20px;
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }
 #weights {
-  --size: 52px;
+  --size: 5.2rem;
 }
 
 #weights input[type="checkbox"] {
@@ -248,14 +252,14 @@ body {
   width: var(--size);
   height: calc(var(--size) / 2);
   background-color: #fff;
-  border: 3px solid #222;
-  border-radius: 30px 100px 100px 100px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border: 0.3rem solid #222;
+  border-radius: 3rem 10rem 10rem 10rem;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
   outline: none;
   cursor: pointer;
   position: relative;
   transition: all 0.5s;
-  margin-top: 15px;
+  margin-top: 1.5rem;
 }
 
 #weights input[type="checkbox"]::before {
@@ -266,33 +270,341 @@ body {
   left: 0;
   top: 50%;
   transform: translateY(-50%) scale(0.7);
-  border: 3px solid #222;
-  border-radius: 30px 100px 100px 100px;
-  background-color: #0d0b0b;
+  border: 0.3rem solid #222;
+  border-radius: 3rem 10rem 10rem 10rem;
+  background-color: #fa849d;
   /*background-color: #8f8e8e;*/
   box-sizing: border-box;
   transition: all 0.5s;
 }
 
 #weights input[type="checkbox"]:checked {
-  background-color: #737373;
+  background-color: #f89393;
   /*background-color: #646464;*/
-  border-radius: 100px 100px 30px 100px;
+  border-radius: 10rem 10rem 3rem 10rem;
 }
 
 #weights input[type="checkbox"]:checked::before {
   left: 50%;
   background-color: #fff;
-  border-radius: 100px 100px 30px 100px;
+  border-radius: 10rem 10rem 3rem 10rem;
 }
 
 #unweight {
-  margin-right: 10px;
+  margin-right: 1rem;
 }
 
 .PathClass {
   text-align: center;
 }
 #checkbox {
-  margin-bottom: -6px;
+  margin-bottom: -0.6rem;
+}
+/* General Variables */
+
+@media (max_width: 998px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+@media (max_width: 768px) {
+  html {
+    font-size: 45%;
+  }
+}
+
+@media only screen and (max-width: 620px) {
+  /* For mobile phones: */
+  .navbar {
+    min-height: 20%;
+  }
+  .navbar button {
+    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
+    cursor: pointer;
+    border: none;
+    max-width: 100%;
+    background-color: #555; /* Match navbar background */
+    font-family: sans-serif;
+    position: relative;
+    justify-content: center;
+    border-radius: 0.4rem;
+  }
+
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  /* Main content container holding input and graph sections */
+  .container {
+    display: flex;
+    flex: 1;
+  }
+
+  /* Input section taking up 30% of the width */
+  .input-section {
+    flex: 0 0 40%;
+    padding: 1.3rem;
+    box-sizing: border-box;
+    background-color: lightgray;
+    overflow-y: auto; /* In case content overflows */
+    font-family: sans-serif;
+  }
+
+  /* Graph section taking up 70% of the width */
+  .graph-section {
+    flex: 1 1 60%;
+    padding: 2rem;
+    box-sizing: border-box;
+    position: relative;
+    font-family: sans-serif;
+  }
+
+  /* Ensure GraphCanvas respects container dimensions */
+  .graph-section > div {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Style for the textarea */
+  .textarea-input {
+    resize: none;
+    width: 100%;
+    background-color: whitesmoke;
+    height: 25rem;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    font-family: "Gill Sans", sans-serif;
+  }
+  .navbar button:hover {
+    background-color: #777; /* Hover color */
+  }
+
+  .navbar button:focus {
+    background-color: rgb(243, 181, 181);
+  }
+
+  #submit_button {
+    appearance: button;
+    background-color: #000;
+    background-image: none;
+    border: 0.1rem solid #000;
+    border-radius: 0.4rem;
+    box-shadow: #fff 0.2rem 0.2rem 0 0, #000 0.2rem 0.2rem 0.1rem;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 2rem;
+    margin: 0 0.5rem 1rem 0;
+    overflow: visible;
+    padding: 1.2rem 4rem;
+    text-align: center;
+    text-transform: none;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  #submit_button:focus {
+    text-decoration: none;
+  }
+
+  #submit_button:hover {
+    text-decoration: none;
+  }
+
+  #submit_button:active {
+    box-shadow: rgba(0, 0, 0, 0.125) 0 0.3rem 0.5rem inset;
+    outline: 0;
+  }
+
+  #submit_button:not([disabled]):active {
+    box-shadow: #fff 0.1rem 0.1rem 0 0, #000 0.2rem 0.2rem 0 0.1rem;
+    transform: translate(0.2rem, 0.2rem);
+  }
+
+  @media (min-width: 768px) {
+    #submit_button {
+      padding: 1.2rem 5rem;
+    }
+  }
+
+  #exportButton {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
+    text-decoration: none;
+    text-transform: camelcase;
+    color: #000;
+    cursor: pointer;
+    border: 0.15rem solid;
+    padding: 0.25rem 0.5rem;
+    box-shadow: 0.05rem 0.05rem 0rem 0rem, 0.1rem 0.1rem 0rem 0rem,
+      0.15rem 0.15rem 0rem 0rem, 0.2rem 0.2rem 0rem 0rem,
+      0.25rem 0.25rem 0rem 0rem;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  #exportButton:active {
+    box-shadow: 0rem 0rem 0rem 0rem;
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .button-54 {
+      padding: 0.25rem 0.75rem;
+    }
+  }
+  #sourceNode {
+    padding: 0.6rem 1.2rem;
+    background: rgb(31, 32, 35);
+    border: 0.1rem solid rgb(60, 63, 68);
+    border-radius: 0.4rem;
+    font-size: 1.3rem;
+    color: rgb(247, 248, 248);
+    height: 2rem;
+    width: 12rem;
+    appearance: none;
+    transition: border 0.15s ease 0s;
+    margin-right: 1rem;
+    font-family: sans-serif;
+  }
+  #destinationNode {
+    padding: 0.6rem 1.2rem;
+    background: rgb(31, 32, 35);
+    border: 0.1rem solid rgb(60, 63, 68);
+    border-radius: 0.4rem;
+    font-size: 1.3rem;
+    color: rgb(247, 248, 248);
+    height: 2rem;
+    width: 12rem;
+    appearance: none;
+    transition: border 0.15s ease 0s;
+    margin-bottom: 2rem;
+    font-family: sans-serif;
+  }
+  #shortestPath {
+    background-color: #000;
+    border: 0.1rem solid transparent;
+    border-radius: 0.75rem;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    flex: 0 0 auto;
+    font-family: sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    padding: 0.75rem 1.2rem;
+    text-align: center;
+    text-decoration: none #6b7280 solid;
+    text-decoration-thickness: auto;
+    transition-duration: 0.2s;
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: auto;
+  }
+
+  #shortestPath:hover {
+    background-color: #374151;
+  }
+
+  #shortestPath:focus {
+    box-shadow: none;
+    outline: 0.2rem solid transparent;
+    outline-offset: 0.2rem;
+  }
+
+  @media (min-width: 768px) {
+    #shortestPath {
+      padding: 0.75rem 1.5rem;
+    }
+  }
+  #weights {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    justify-content: space-around;
+    font-family: sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  #weights {
+    --size: 4.2rem;
+  }
+
+  #weights input[type="checkbox"] {
+    -webkit-appearance: none;
+    width: var(--size);
+    height: calc(var(--size) / 2);
+    background-color: #fff;
+    border: 0.2rem solid #222;
+    border-radius: 2rem 7rem 7rem 7rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.5s;
+    margin-top: 1.5rem;
+  }
+
+  #weights input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    width: calc(var(--size) / 2);
+    height: calc(var(--size) / 2);
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) scale(0.7);
+    border: 0.3rem solid #222;
+    border-radius: 3rem 10rem 10rem 10rem;
+    background-color: #fa849d;
+    /*background-color: #8f8e8e;*/
+    box-sizing: border-box;
+    transition: all 0.5s;
+  }
+
+  #weights input[type="checkbox"]:checked {
+    background-color: #f89393;
+    /*background-color: #646464;*/
+    border-radius: 10rem 10rem 3rem 10rem;
+  }
+
+  #weights input[type="checkbox"]:checked::before {
+    left: 50%;
+    background-color: #fff;
+    border-radius: 10rem 10rem 3rem 10rem;
+  }
+
+  #unweight {
+    margin-right: 1rem;
+  }
+
+  .PathClass {
+    text-align: center;
+  }
+  #checkbox {
+    margin-bottom: -0.6rem;
+  }
+
+  .graph-section,
+  .navbar,
+  .input-section {
+    width: 100%;
+  }
 }
