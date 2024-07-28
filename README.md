@@ -20,7 +20,7 @@ Check out the live demo of the project here: [Graph Visualizer](https://graph-vi
 
 **Clone the repository**
 
-   *git clone* https://github.com/ayoaditya/graph_visualizer
+   **git clone** https://github.com/ayoaditya/graph_visualizer
 
 
 ## Usage
