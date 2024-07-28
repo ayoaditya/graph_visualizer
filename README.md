@@ -1,6 +1,7 @@
 # Graph Visualizer
 
-![Graph Visualizer Banner](https://graph-visualizerr.vercel.app/banner.png) <!-- Adjust the image URL or remove if not available -->
+![image](https://github.com/user-attachments/assets/c6662790-bc31-40cc-bf0f-35024b08a981)
+
 
 ## Description
 
