@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# Graph Visualizer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+Graph Visualizer is an interactive tool developed to help visualize and analyze graph algorithms. It supports various functionalities including Breadth-First Search (BFS), Depth-First Search (DFS), shortest path calculation, and topological sorting. The application allows for real-time graph analysis, showcasing traversal paths, shortest paths, and topological orders with distinct visual differentiation.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Graph Visualization**: Visualize nodes and edges in a customizable layout.
+- **Traversal Algorithms**: Execute BFS and DFS to explore the graph.
+- **Shortest Path**: Calculate and display the shortest path between two nodes.
+- **Topological Sort**: Perform topological sorting on the graph.
+- **Error Handling**: Includes input validation to ensure accurate graph representation.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Live Demo
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Check out the live demo of the project here: [Graph Visualizer](https://graph-visualizerr.vercel.app/)
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Clone the repository**
 
-### `npm run build`
+   **git clone** https://github.com/ayoaditya/graph_visualizer
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Enter Graph Data**: Provide nodes and edges in the input section (e.g., `1 2\n2 3`).
+2. **Select Algorithm**: Choose from BFS, DFS, Shortest Path, Topological Sort or Normal Visualization.
+3. **Submit Graph**: Click the "Submit" button to visualize the graph.
+4. **Find Shortest Path**: Enter source and destination nodes and click "Find Shortest Path" to get the shortest path.
+5. **Export Graph**: Click "Export Graph" to download the current graph visualization as an image.
 
-### `npm run eject`
+## Components
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **TopologicalSort**: Handles topological sorting of the graph.
+- **ProcessGraphInput**: Processes and validates graph input.
+- **ShortestPath**: Calculates the shortest path between nodes.
+- **DfsTraversal**: Executes Depth-First Search.
+- **BfsTraversal**: Executes Breadth-First Search.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Technologies Used
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **React**: For building the user interface.
+- **reagraph**: For rendering the graph and its layouts.
+- **react-toastify**: For displaying error messages.
+- **CSS**: For styling the application.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Screenshots
 
-## Learn More
+**Shortest Distance Between Two Nodes**
+![image](https://github.com/user-attachments/assets/a12a06d1-ecc3-4f6d-a4ac-65c1d766868a)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Create Custom Graph Configurations**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![graph](https://github.com/user-attachments/assets/c2b72a53-a213-483b-a13c-6e58812973b3)
 
-### Code Splitting
+**Tree Layout**
+![image](https://github.com/user-attachments/assets/2a8657cc-441b-45d1-8e24-04c644227d7a)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**BFS Traversal**
+![image](https://github.com/user-attachments/assets/20804b24-9b22-45f4-8a9a-ec579941b099)
 
-### Analyzing the Bundle Size
+**DFS Traversal**
+![image](https://github.com/user-attachments/assets/f74a56d0-5be1-4f3e-b3df-9b35cd8ac61f)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**Topological Sort**
+![image](https://github.com/user-attachments/assets/d6e764a5-76e2-496c-b213-dd6c2ad17a3b)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
