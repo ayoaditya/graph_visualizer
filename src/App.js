@@ -3,6 +3,7 @@ import { GraphCanvas, darkTheme, useSelection } from "reagraph";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css"; // Import your CSS file
+import { Analytics } from "@vercel/analytics/react";
 import { toast, Bounce } from "react-toastify";
 
 import { TopologicalSort } from "./Components/TopologicalSort";
@@ -313,6 +314,7 @@ function App() {
             onCanvasClick={onCanvasClick}
             onNodeClick={onNodeClick}
           />
+          <Analytics />
         </div>
       </div>
       <ToastContainer />
