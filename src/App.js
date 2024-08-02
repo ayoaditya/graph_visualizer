@@ -25,11 +25,6 @@ function App() {
   const [isWeightedChecked, setIsWeightedChecked] = useState(false);
   const [isUnweightedChecked, setIsUnweightedChecked] = useState(true);
 
-  const reloadPage = () => {
-    window.location.reload();
-    console.log("reload");
-  };
-
   // Handlers to update the state
   const handleWeightedChange = (event) => {
     const checked = event.target.checked;
@@ -135,7 +130,7 @@ function App() {
   };
 
   const handleTopologicalSort = () => {
-    //topologicalSort result
+    //TopologicalSort Result
     console.log(inputValue);
     const { nodes: newNodes, edges: newEdges } = TopologicalSort(
       inputValue,
@@ -154,6 +149,7 @@ function App() {
   const handleBFS = () => {
     // BFS result
     console.log(inputValue);
+
     const { nodes: newNodes, edges: newEdges } = BfsTraversal(
       inputValue,
       isWeightedChecked
@@ -299,8 +295,6 @@ function App() {
               Find Shortest Path
             </button>
 
-            <button onclick={reloadPage()}>Reload</button>
-
             <h2 className="FSPDist">
               Shortest Distance Between {sourceValue} And {destinationValue} Is:{" "}
               {shortestDistance}
@@ -313,7 +307,7 @@ function App() {
             labelType="all"
             edgeLabelPosition="below"
             edgeArrowPosition="end" // Update edge arrow position based on graph type
-            theme={lightTheme} // for dark theme use darkTheme
+            theme={darkTheme} // for dark theme use darkTheme
             ref={graphRef}
             draggable
             nodes={nodes}
