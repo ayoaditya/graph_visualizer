@@ -29,6 +29,7 @@ function App() {
 
   const reloadPage = () => {
     window.location.reload();
+    console.log("reload");
   };
 
   const handleWeightedChange = (event) => {
@@ -298,7 +299,7 @@ function App() {
             >
               Find Shortest Path
             </button>
-            <button onclick={reloadPage}>Reload</button>
+            <button onclick={reloadPage()}>Reload</button>
 
             <h2 className="FSPDist">
               Shortest Distance Between {sourceValue} And {destinationValue} Is:{" "}
