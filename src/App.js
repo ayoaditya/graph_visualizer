@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { GraphCanvas, darkTheme, useSelection } from "reagraph";
+import { GraphCanvas, darkTheme, lightTheme, useSelection } from "reagraph";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css"; // Import your CSS file
@@ -313,7 +313,7 @@ function App() {
             labelType="all"
             edgeLabelPosition="below"
             edgeArrowPosition="end" // Update edge arrow position based on graph type
-            theme={darkTheme} // for dark theme use darkTheme
+            theme={lightTheme} // for dark theme use darkTheme
             ref={graphRef}
             draggable
             nodes={nodes}
