@@ -26,12 +26,6 @@ function App() {
   const [isUnweightedChecked, setIsUnweightedChecked] = useState(true);
 
   // Handlers to update the state
-
-  const reloadPage = () => {
-    window.location.reload();
-    console.log("reload");
-  };
-
   const handleWeightedChange = (event) => {
     const checked = event.target.checked;
     setIsWeightedChecked(checked);
@@ -299,7 +293,6 @@ function App() {
             >
               Find Shortest Path
             </button>
-            <button onclick={reloadPage()}>Reload</button>
 
             <h2 className="FSPDist">
               Shortest Distance Between {sourceValue} And {destinationValue} Is:{" "}
