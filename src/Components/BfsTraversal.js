@@ -62,7 +62,8 @@ export function BfsTraversal(connections, isWeighted) {
     const bfsOrder = [];
 
     // set of DistinctNodes in Graph
-    const DistinctNodes = new Set(Object.keys(graph)); // Initialize with all keys in the graph
+    // Initialize with all keys in the graph
+    const DistinctNodes = new Set(Object.keys(graph));
 
     const bfs = (startNode) => {
       const queue = [startNode];

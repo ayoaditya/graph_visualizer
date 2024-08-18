@@ -15,10 +15,12 @@ import { BfsTraversal } from "./Components/BfsTraversal";
 function App() {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
+
   const [inputValue, setInputValue] = useState("");
   const [shortestDistance, setShortestDistance] = useState("∞");
   const [destinationValue, setDestinationValue] = useState("");
   const [sourceValue, setSourceValue] = useState("");
+
   const [layoutTypeGraph, setlayoutTypeGraph] = useState("forceDirected2d");
   const graphRef = useRef(null);
 

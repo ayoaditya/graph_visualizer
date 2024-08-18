@@ -17,6 +17,7 @@ export function DfsTraversal(connections, isWeighted) {
           graph[start] = [];
         }
         graph[start].push(end);
+
         // Initialize end node in case it has no outgoing edges
         if (!graph[end]) {
           graph[end] = [];
@@ -61,7 +62,8 @@ export function DfsTraversal(connections, isWeighted) {
     const dfsOrder = [];
 
     // set of DistinctNodes
-    const DistinctNodes = new Set(Object.keys(graph)); // Initialize with all keys in the graph
+    // Initialize with all keys in the graph
+    const DistinctNodes = new Set(Object.keys(graph));
 
     function dfs(node) {
       if (visited_dfs.has(node)) return;
@@ -78,7 +80,8 @@ export function DfsTraversal(connections, isWeighted) {
     DistinctNodes.forEach((node) => {
       if (!visited_dfs.has(node)) {
         if (dfsOrder.length > 0) {
-          dfsOrder.push("SePaRaTiOn"); // Separate different connected components
+          // Separate different connected components
+          dfsOrder.push("SePaRaTiOn");
         }
         dfs(node);
       }
