@@ -64,7 +64,8 @@ export function TopologicalSort(connections, isWeighted) {
     let cycleDetected = false;
 
     function dfs(node) {
-      if (cycleDetected) return; // If a cycle is detected, no need to continue
+      // If a cycle is detected, no need to continue
+      if (cycleDetected) return; 
       if (onPath.has(node)) {
         cycleDetected = true; // Cycle detected
         return;
