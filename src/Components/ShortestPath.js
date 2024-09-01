@@ -103,12 +103,13 @@ export function ShortestPath(inputValue, src, dest, isWeighted) {
       }
 
       // Check for negative-weight cycles
-      edges.forEach(([start, end, weight]) => {
+      for (let i = 0; i < edges.length; i++) {
+        const [start, end, weight] = edges[i];
         if (distances[start] + weight < distances[end]) {
           console.error("Graph contains a negative-weight cycle");
-          return null;
+          return { error: "Negative Cycle Detected!" }; // Negative cycle detected
         }
-      });
+      }
 
       // Build the shortest path
       const FINAL_ANS = [];
@@ -136,6 +137,9 @@ export function ShortestPath(inputValue, src, dest, isWeighted) {
 
     if (!FINAL_ANS) {
       return { error: "No path found from source to destination" };
+    }
+    if (FINAL_ANS.error) {
+      return { error: FINAL_ANS.error }; // Handle negative cycle error
     }
     const ConnectionShortestPath = [];
     for (let i = 0; i < FINAL_ANS.length - 1; i++) {
